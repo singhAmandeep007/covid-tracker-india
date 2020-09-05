@@ -1,32 +1,7 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react';
 
 
-export default function Table(props) {
-  const[arr,setArr]=useState([])
-
-  const  renderTable=(data)=>{
-    const arr=[];
-    console.log(data.length)
-    for (let i = 1; i < data.length; i++ ) {
-         arr.push(
-        <tr key={i}>
-        <th scope="row">{data[i].state}</th>
-        <td>{data[i].confirmed}</td>
-        <td>{data[i].active}</td>
-        <td>{data[i].recovered}</td>
-        <td>{data[i].deaths}</td>
-      </tr>
-      )
-    }
-    return arr;
-  }
-  useEffect(()=>{
-
-    setArr(renderTable(props.data));
-
-  },[props.data])
-
-
+export default function Table({data}) {
 
     return (
      
@@ -46,14 +21,19 @@ export default function Table(props) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">India</th>
-                  <td>{props.data[0].confirmed}</td>
-                  <td>{props.data[0].active}</td>
-                  <td>{props.data[0].recovered}</td>
-                  <td>{props.data[0].deaths}</td>
-                </tr>
-                {arr}
+    
+                {data.slice(1).map((d,index) =>{
+                return(                  
+                  <tr key={index}>
+                      <th scope="row">{d.state}</th>
+                      <td>{d.confirmed}</td>
+                      <td>{d.active}</td>
+                      <td>{d.recovered}</td>
+                      <td>{d.deaths}</td>
+                  </tr>
+                )      
+                })}
+
               </tbody>
             </table>
           </div>
