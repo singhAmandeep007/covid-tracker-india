@@ -1,28 +1,14 @@
 import React,{useState,useEffect} from 'react'
-//import $ from "jquery";
+
 
 export default function Table(props) {
-  const[data,setData]=useState(props.data)
+  const[arr,setArr]=useState([])
 
-  const arr=[];
-  useEffect(()=>{
-
-    renderTable();
-
-    // $(document).ready(function () {
-    //   $('#dtBasicExample').DataTable();
-    //   $('.dataTables_length').addClass('bs-select');
-    //   });
-
-  },[])
-
-
-
-
-  const renderTable=(data)=>{
+  const  renderTable=(data)=>{
+    const arr=[];
     console.log(data.length)
-     for (let i = 1; i < data.length; i++ ) {
-      arr.push(
+    for (let i = 1; i < data.length; i++ ) {
+         arr.push(
         <tr key={i}>
         <th scope="row">{data[i].state}</th>
         <td>{data[i].confirmed}</td>
@@ -32,12 +18,20 @@ export default function Table(props) {
       </tr>
       )
     }
+    return arr;
   }
+  useEffect(()=>{
+
+    setArr(renderTable(props.data));
+
+  },[props.data])
+
+
 
     return (
      
         <div>
-           {console.log('updated')}
+          {console.log('updated')}
           <div class="card mb-3">
           <div class="card-body">
           <div class="table-responsive-xl table-wrapper-scroll-y my-custom-scrollbar">
@@ -54,10 +48,10 @@ export default function Table(props) {
               <tbody>
                 <tr>
                   <th scope="row">India</th>
-                  <td>{data[0].confirmed}</td>
-                  <td>{data[0].active}</td>
-                  <td>{data[0].recovered}</td>
-                  <td>{data[0].deaths}</td>
+                  <td>{props.data[0].confirmed}</td>
+                  <td>{props.data[0].active}</td>
+                  <td>{props.data[0].recovered}</td>
+                  <td>{props.data[0].deaths}</td>
                 </tr>
                 {arr}
               </tbody>

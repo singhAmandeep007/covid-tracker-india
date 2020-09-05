@@ -58,6 +58,7 @@ function App() {
           <div className="container-fluid m2">
 
             <div className="row">
+              {/* left side */}
               <div style={{border:'1px solid red'}} className="col-lg-6 themed-grid-col">
               <h2 className="mt-4">India Covid-19 tracker</h2>
               <p>Get two columns <strong>starting at desktops and scaling to large desktops</strong>.</p>
@@ -67,8 +68,11 @@ function App() {
               <StatBox></StatBox>
 
               {/* table */}
+              
               <Table data={info.statewise}></Table>
+              
               </div>
+              {/* right side */}
               <div style={{border:'1px solid red'}} className="col-lg-6 themed-grid-col">
               <h2 class="mt-4">India Map</h2>
               <p>Get two columns <strong>starting at desktops and scaling to large desktops</strong>.</p>
@@ -78,36 +82,36 @@ function App() {
                 <div class="card-body">
                   <div class="row">
                     {/* infobox */}
-                    <div class="col-xl-6 themed-grid-col mb-3">
+                    <div class="col-xl-12 themed-grid-col mb-3">
                       <div class="card-group">
                         <InfoBox 
                           title={'CONFIRMED'}
-                          total={}
+                          total={selectedState}
                           color={colors[0]}
                           ></InfoBox>
                         <InfoBox
                           title={'ACTIVE'}
-                          total={}
+                          total={selectedState}
                           color={colors[1]}
                           ></InfoBox>
                         <InfoBox
                           title={'RECOVERED'}
-                          total={}
+                          total={selectedState}
                           color={colors[2]}
                           ></InfoBox>
                         <InfoBox
                           title={'DECEASED'}
-                          total={}
+                          total={selectedState}
                           color={colors[3]}
                           ></InfoBox>
                       </div>                   
                     </div>
                     {/* last update */}
-                    <div class="col-xl-6 themed-grid-col mb-3">
+                    <div class="col-xl-12 themed-grid-col mb-3">
                       <div class="float-right">Float right on all viewport sizes</div>
                     </div>
                     {/* map */}
-                    <div class="col-xl-6 themed-grid-col mb-3">
+                    <div class="col-xl-12 themed-grid-col mb-3">
                       <Map></Map>
                     </div>
                   
