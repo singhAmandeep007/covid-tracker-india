@@ -1,19 +1,20 @@
 import React,{useState,useEffect} from 'react';
-import StatBox from './components/StatBox';
-import Table from './components/Table';
-import InfoBox from './components/InfoBox';
-import Map from './components/Map';
+import StatBox from './components/Charts/StatBox';
+import Table from './components/Table/Table';
+import InfoBox from './components/InfoBox/InfoBox';
+import Map from './components/Map/Map';
 
 import './css/App.css';
 
 function App() {
   const[info,setInfo]=useState([]);
   const[timelineInfo,setTimelineInfo]=useState([]);
-  const[selectedState,setSelectedState]=useState('india');
+  const[selectedState,setSelectedState]=useState('TT');
+  const[selectedStateInfo,setSelectedStateInfo]=useState({});
 
   const[loading,setLoading]=useState(true);
 
-  const colors=['blue','green','red','grey'];
+  const colors=['red','blue','green','grey'];
 
   async function getInfo() {
     
@@ -21,6 +22,7 @@ function App() {
       const response = await fetch('https://api.covid19india.org/data.json');
       const data = await response.json();
       setInfo(data);
+      setSelectedStateInfo(data.statewise[0]);
       
     }
     catch(e) {
@@ -28,8 +30,10 @@ function App() {
       setLoading(true);
     }
   }
+
+  
+
   async function getTimelineInfo() {
-    
     try {
       const response = await fetch('https://api.covid19india.org/states_daily.json');
       const data = await response.json();
@@ -41,11 +45,24 @@ function App() {
       setLoading(true);
     }
   }
+
+  const handleHover=(state)=>{
+    
+    setSelectedState(state)
+    for(let s of info.statewise ){
+      if(s.statecode===state){
+        setSelectedStateInfo(s)
+      }
+    }
+    
+  }
+  
+
   useEffect(() => {
-      console.log('useEffect called'); 
       getInfo();
-      getTimelineInfo()
+      getTimelineInfo();
    }, []);
+
 
       if(loading){
         return(
@@ -62,15 +79,17 @@ function App() {
               <div style={{border:'1px solid red'}} className="col-lg-6 themed-grid-col">
               <h2 className="mt-4">India Covid-19 tracker</h2>
               <p>Get two columns <strong>starting at desktops and scaling to large desktops</strong>.</p>
-              {console.log(info)}
-              {console.log(timelineInfo)}
+             
               {/* Stats */}
               <StatBox></StatBox>
 
               {/* table */}
               
-              <Table data={info.statewise}></Table>
-              
+              <Table  
+               data={info.statewise}
+               handleHover={handleHover}
+              ></Table>
+
               </div>
               {/* right side */}
               <div style={{border:'1px solid red'}} className="col-lg-6 themed-grid-col">
@@ -86,22 +105,22 @@ function App() {
                       <div class="card-group">
                         <InfoBox 
                           title={'CONFIRMED'}
-                          total={selectedState}
+                          total={selectedStateInfo.confirmed}
                           color={colors[0]}
                           ></InfoBox>
                         <InfoBox
                           title={'ACTIVE'}
-                          total={selectedState}
+                          total={selectedStateInfo.active}
                           color={colors[1]}
                           ></InfoBox>
                         <InfoBox
                           title={'RECOVERED'}
-                          total={selectedState}
+                          total={selectedStateInfo.recovered}
                           color={colors[2]}
                           ></InfoBox>
                         <InfoBox
                           title={'DECEASED'}
-                          total={selectedState}
+                          total={selectedStateInfo.deaths}
                           color={colors[3]}
                           ></InfoBox>
                       </div>                   
@@ -112,7 +131,9 @@ function App() {
                     </div>
                     {/* map */}
                     <div class="col-xl-12 themed-grid-col mb-3">
-                      <Map></Map>
+                      <Map
+
+                       ></Map>
                     </div>
                   
                   </div>

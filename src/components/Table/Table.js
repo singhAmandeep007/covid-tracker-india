@@ -1,12 +1,11 @@
 import React from 'react';
+import './Table.css';
 
-
-export default function Table({data}) {
+export default function Table({data,handleHover}) {
 
     return (
      
         <div>
-          {console.log('updated')}
           <div class="card mb-3">
           <div class="card-body">
           <div class="table-responsive-xl table-wrapper-scroll-y my-custom-scrollbar">
@@ -22,9 +21,13 @@ export default function Table({data}) {
               </thead>
               <tbody>
     
-                {data.slice(1).map((d,index) =>{
+                {data && data.slice(1).map((d,index) =>{
                 return(                  
-                  <tr key={index}>
+                  <tr 
+                  key={index} 
+                  onMouseOver={()=>handleHover(d.statecode)} 
+                  onMouseOut={()=>handleHover('TT')}
+                  >
                       <th scope="row">{d.state}</th>
                       <td>{d.confirmed}</td>
                       <td>{d.active}</td>
