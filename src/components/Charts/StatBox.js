@@ -1,38 +1,24 @@
-import React from 'react';
+import React, {useState, useEffect } from 'react';
 import LineChart from './LineChart';
+import PieExample from './DonutChart';
 
-import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-
-am4core.useTheme(am4themes_animated);
-
-export default function StatBox() {
+export default function StatBox({info, updateInfo}) {
+const[data,setData]=useState(info)
+    useEffect(()=>{
+     setData(info)
+     
+    },[info])
     return (
          <div class="card mb-3">
           
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-6 themed-grid-col">
-
-
-
-                
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              </div>
-                <div class="col-sm-6 themed-grid-col">
+              <div class="col-sm-7 themed-grid-col">
+                <PieExample  
+                updateInfo={updateInfo}
+                info={info}></PieExample>       
+               </div>
+                <div class="col-sm-5 themed-grid-col">
                 <LineChart></LineChart>
                 </div>
             </div>

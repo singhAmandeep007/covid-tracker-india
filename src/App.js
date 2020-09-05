@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import StatBox from './components/Charts/StatBox';
+
 import Table from './components/Table/Table';
 import InfoBox from './components/InfoBox/InfoBox';
 import Map from './components/Map/Map';
@@ -81,7 +82,9 @@ function App() {
               <p>Get two columns <strong>starting at desktops and scaling to large desktops</strong>.</p>
              
               {/* Stats */}
-              <StatBox></StatBox>
+              <StatBox 
+              updateInfo={setSelectedStateInfo}
+              info={selectedStateInfo}></StatBox>
 
               {/* table */}
               
