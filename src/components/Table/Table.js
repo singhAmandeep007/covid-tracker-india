@@ -9,7 +9,7 @@ export default function Table({data,handleHover}) {
           <div class="card mb-3">
           <div class="card-body">
           <div class="table-responsive-xl table-wrapper-scroll-y my-custom-scrollbar">
-            <table id="dtBasicExample" class="table table-striped table-bordered table-hover">
+            <table id="dtBasicExample" class="table table-bordered table-hover">
               <thead class="thead-dark">
                 <tr>
                   <th scope="col">State/UT</th>

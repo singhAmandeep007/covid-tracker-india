@@ -2,23 +2,15 @@ import React, { Component } from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 
-
-
-class PieExample extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {info: this.props.info};
-      }
+class DonutChart extends Component {
   chart = null;
 
-  
   componentWillUnmount() {
     if (this.chart) {
       this.chart.dispose();
     }
   }
   
-
   renderChartUsingConfig = (info) => {
     
     const usersData = [
@@ -57,7 +49,7 @@ class PieExample extends Component {
             {
               type: "Label",
               forceCreate: true,
-              text: `[bold  black]${usersData[0].count} \n [font-weight:400;text-shadow:1px 1px  #b3b3b3]Confirmed`,
+              text: `[font-weight: 900;text-align;center;]${usersData[0].count} \n [font-weight:400;text-shadow:1px 1px  #b3b3b3]Confirmed`,
               horizontalCenter: "middle",
               verticalCenter: "middle",
               fontSize: 20,
@@ -118,39 +110,39 @@ class PieExample extends Component {
   };
 
 
-  setConfig() {
-    const config = this.renderChartUsingConfig(this.props.info);
-    this.chart = am4core.createFromConfig(
-        config,
-        "demo-chart",
-        am4charts.PieChart
-      );
-  }
+    setConfig() {
+        const config = this.renderChartUsingConfig(this.props.info);
+        this.chart = am4core.createFromConfig(
+            config,
+            "demo-chart",
+            am4charts.PieChart
+        );
+    }
 
 
-  componentDidUpdate(){
-    this.chart.dispose();
-    this.setConfig();
+    componentDidUpdate(){ 
+        this.chart.dispose();
+        this.setConfig();
+    }
+
+    componentDidMount() {
+        this.setConfig()
+    }
+
+
+    render() {
+
+        return (
+        <div>
+            <div
+            id="demo-chart"
+        
+            style={{ height: "250px" ,width:'100%'}}
+            />
+            <div id="legend"  />
+        </div>
+        );
+    }
 }
 
-componentDidMount() {
-    this.setConfig()
-}
-
-
-  render() {
-
-    return (
-      <div>
-        <div
-          id="demo-chart"
-       
-          style={{ height: "250px" ,width:'100%'}}
-        />
-        <div id="legend"  />
-      </div>
-    );
-  }
-}
-
-export default PieExample;
+export default DonutChart;

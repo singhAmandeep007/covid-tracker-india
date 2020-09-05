@@ -83,8 +83,8 @@ function App() {
              
               {/* Stats */}
               <StatBox 
-              updateInfo={setSelectedStateInfo}
-              info={selectedStateInfo}></StatBox>
+               info={selectedStateInfo}
+              ></StatBox>
 
               {/* table */}
               
