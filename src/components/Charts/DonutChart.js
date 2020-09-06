@@ -111,7 +111,7 @@ class DonutChart extends Component {
 
 
     setConfig() {
-        const config = this.renderChartUsingConfig(this.props.info);
+        const config = this.renderChartUsingConfig(this.props.selectedStateInfo);
         this.chart = am4core.createFromConfig(
             config,
             "demo-chart",

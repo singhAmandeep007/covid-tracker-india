@@ -3,6 +3,7 @@ import StatBox from './components/Charts/StatBox';
 
 import Table from './components/Table/Table';
 import InfoBox from './components/InfoBox/InfoBox';
+
 import Map from './components/Map/Map';
 
 import './css/App.css';
@@ -10,8 +11,9 @@ import './css/App.css';
 function App() {
   const[info,setInfo]=useState([]);
   const[timelineInfo,setTimelineInfo]=useState([]);
-  const[selectedState,setSelectedState]=useState('TT');
   const[selectedStateInfo,setSelectedStateInfo]=useState({});
+
+  const[selectedState,setSelectedState]=useState('TT');
 
   const[loading,setLoading]=useState(true);
 
@@ -24,6 +26,7 @@ function App() {
       const data = await response.json();
       setInfo(data);
       setSelectedStateInfo(data.statewise[0]);
+      console.log(data)
       
     }
     catch(e) {
@@ -40,6 +43,7 @@ function App() {
       const data = await response.json();
       setTimelineInfo(data);
       setLoading(false)
+      console.log(data)
     }
     catch(e) {
       console.error('There has been a problem with your fetch operation:', e);
@@ -48,17 +52,15 @@ function App() {
   }
 
   const handleHover=(state)=>{
-    
-    setSelectedState(state)
+    console.log(state)
+    // setSelectedState(state)
     for(let s of info.statewise ){
-      if(s.statecode===state){
+      if(s.statecode===state){       
         setSelectedStateInfo(s)
       }
-    }
-    
+    }  
   }
   
-
   useEffect(() => {
       getInfo();
       getTimelineInfo();
@@ -83,7 +85,7 @@ function App() {
              
               {/* Stats */}
               <StatBox 
-               info={selectedStateInfo}
+               selectedStateInfo={selectedStateInfo}
               ></StatBox>
 
               {/* table */}
@@ -95,13 +97,13 @@ function App() {
 
               </div>
               {/* right side */}
-              <div style={{border:'1px solid red'}} className="col-lg-6 themed-grid-col">
+              <div style={{border:'1px solid red'}} className="col-lg-6 themed-grid-col shadow bg-white rounded">
               <h2 class="mt-4">India Map</h2>
               <p>Get two columns <strong>starting at desktops and scaling to large desktops</strong>.</p>
 
-              <div class="card mb-3">
+              <div class="card mb-3 shadow  bg-white rounded">
                 
-                <div class="card-body">
+                <div class="card-body ">
                   <div class="row">
                     {/* infobox */}
                     <div class="col-xl-12 themed-grid-col mb-3">
@@ -129,14 +131,19 @@ function App() {
                       </div>                   
                     </div>
                     {/* last update */}
-                    <div class="col-xl-12 themed-grid-col mb-3">
-                      <div class="float-right">Float right on all viewport sizes</div>
+                    <div class="col-xl-12 themed-grid-col mb-3 ">
+                      <div class="float-right"><p><span className="font-weight-light">Last Updated: </span> {selectedStateInfo.lastupdatedtime}</p>
+                      </div>
                     </div>
                     {/* map */}
                     <div class="col-xl-12 themed-grid-col mb-3">
-                      <Map
 
-                       ></Map>
+                          <Map
+                         
+                          info={info.statewise}
+                          handleHover={handleHover}
+                          ></Map>
+                      
                     </div>
                   
                   </div>

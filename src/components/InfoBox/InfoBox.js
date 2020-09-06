@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import CountUp from "react-countup";
+
 import './InfoBox.css';
 
 export default function InfoBox({title,total,color}) {
@@ -6,8 +8,12 @@ export default function InfoBox({title,total,color}) {
         <div class="card">
                     
         <div className={`card-body ${color}`}>
-          <h6 className={`card-title `} >{title}</h6>
-          <p class="card-text" >{total} </p> 
+          <h6 className={`card-title `} style={{minHeight:'50px'}}>{title}</h6>
+          <p class="card-text" > {isFinite(total)?<CountUp 
+                            end= {Number(total)}     
+                            duration={1}
+                            separator={","}
+                          ></CountUp>:0}</p> 
          
         </div>
       </div>
