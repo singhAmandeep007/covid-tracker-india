@@ -82,7 +82,7 @@ function Map({handleHover,info}) {
 
   return (
     <div className="full-width-height container">
-      <h6 className="no-margin center">States and UTs</h6>
+      {/* <h6 className="no-margin center">States and UTs</h6> */}
       <ReactTooltip>{tooltipContent}</ReactTooltip>
         <ComposableMap
           projectionConfig={PROJECTION_CONFIG}

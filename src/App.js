@@ -81,7 +81,7 @@ function App() {
               {/* left side */}
               <div style={{border:'1px solid red'}} className="col-lg-6 themed-grid-col">
               <h2 className="mt-4">India Covid-19 tracker</h2>
-              <p>Get two columns <strong>starting at desktops and scaling to large desktops</strong>.</p>
+              <p>Let's all pray to make out Earth <strong>Covid-19 free soon</strong>. Stay Safe and Stay Home</p>
              
               {/* Stats */}
               <StatBox 
@@ -100,7 +100,7 @@ function App() {
               {/* right side */}
               <div style={{border:'1px solid red'}} className="col-lg-6 themed-grid-col shadow bg-white rounded">
               <h2 class="mt-4">India Map</h2>
-              <p>Get two columns <strong>starting at desktops and scaling to large desktops</strong>.</p>
+              <p> <strong>Hover over</strong> a state to see more details.</p>
 
               <div class="card mb-3 shadow  bg-white rounded">
                 
