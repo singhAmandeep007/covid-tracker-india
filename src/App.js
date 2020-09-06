@@ -5,7 +5,7 @@ import Table from './components/Table/Table';
 import InfoBox from './components/InfoBox/InfoBox';
 
 import Map from './components/Map/Map';
-
+import Loader from './Loader';
 import './css/App.css';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   const[timelineInfo,setTimelineInfo]=useState([]);
   const[selectedStateInfo,setSelectedStateInfo]=useState({});
 
-  const[selectedState,setSelectedState]=useState('TT');
+  // const[selectedState,setSelectedState]=useState('TT');
 
   const[loading,setLoading]=useState(true);
 
@@ -69,7 +69,7 @@ function App() {
 
       if(loading){
         return(
-          <div>Loading...</div>
+          <Loader></Loader>
         )       
       }
 
@@ -79,7 +79,7 @@ function App() {
 
             <div className="row">
               {/* left side */}
-              <div style={{border:'1px solid red'}} className="col-lg-6 themed-grid-col">
+              <div  className="col-lg-6 themed-grid-col  ">
               <h2 className="mt-4">India Covid-19 tracker</h2>
               <p>Let's all pray to make out Earth <strong>Covid-19 free soon</strong>. Stay Safe and Stay Home</p>
              
@@ -95,12 +95,13 @@ function App() {
                data={info.statewise}
                handleHover={handleHover}
               ></Table>
-
+             
+             
               </div>
               {/* right side */}
-              <div style={{border:'1px solid red'}} className="col-lg-6 themed-grid-col shadow bg-white rounded">
+              <div  className="col-lg-6 themed-grid-col ">
               <h2 class="mt-4">India Map</h2>
-              <p> <strong>Hover over</strong> a state to see more details.</p>
+              <p> <strong>Hover over</strong> a state or table row to see more details.</p>
 
               <div class="card mb-3 shadow  bg-white rounded">
                 
@@ -140,7 +141,6 @@ function App() {
                     <div class="col-xl-12 themed-grid-col mb-3">
 
                           <Map
-                         
                           info={info.statewise}
                           handleHover={handleHover}
                           ></Map>
@@ -157,12 +157,13 @@ function App() {
 
               </div>
             </div>
+            <footer class="page-footer font-small ">
+                <div class="footer-copyright text-center py-3">Amandeep Singh © 2020 Copyright</div>
+            </footer>
           </div>
         )
       }
     
-    
-  
 }
 
 export default App;

@@ -1,5 +1,5 @@
 import React from 'react';
-import CountUp from "react-countup";
+
 import './Table.css';
 
 export default function Table({data,handleHover}) {
@@ -30,26 +30,10 @@ export default function Table({data,handleHover}) {
                     onMouseOut={()=>handleHover('TT')}
                   >
                       <th scope="row">{d.state}</th>
-                      <td>{isFinite(d.confirmed)?<CountUp 
-                          end= {Number(d.confirmed)}     
-                          duration={1}
-                          separator={","}
-                          ></CountUp>:0}</td>
-                      <td>{isFinite(d.active)?<CountUp 
-                          end= {Number(d.active)}     
-                          duration={1}
-                          separator={","}
-                          ></CountUp>:0}</td>
-                      <td>{isFinite(d.recovered)?<CountUp 
-                          end= {Number(d.recovered)}     
-                          duration={1}
-                          separator={","}
-                          ></CountUp>:0}</td>
-                      <td>{isFinite(d.deaths)?<CountUp 
-                          end= {Number(d.deaths)}     
-                          duration={1}
-                          separator={","}
-                          ></CountUp>:0}</td>
+                      <td>{(d.confirmed)}</td>
+                      <td>{(d.active)}</td>
+                      <td>{(d.recovered)}</td>
+                      <td>{(d.deaths)}</td>
                    </tr>
                 )      
                 })}

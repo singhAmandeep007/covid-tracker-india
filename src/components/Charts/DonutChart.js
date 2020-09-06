@@ -141,7 +141,7 @@ class DonutChart extends Component {
             <div
             id="demo-chart"
         
-            style={{ height: "250px" }}
+            style={{ height: "290px" }}
             />
             
    

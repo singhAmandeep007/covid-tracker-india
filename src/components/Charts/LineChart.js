@@ -19,57 +19,7 @@ class LineChart extends Component {
       this.chart.dispose();
     }
   }
-  
-  getAxisRanges = (minValue, maxValue) => {
-    const axisRangesCount = 4,
-      axisRanges = [];
 
-    for (let index = 0; index <= axisRangesCount; index++) {
-      const axisRange = {};
-
-      axisRange["value"] = minValue + (index * (maxValue - minValue)) / 4;
-
-      const labelText =
-        axisRange["value"] && this.getFormattedValue(axisRange["value"]);
-
-      axisRange["label"] = {
-        disabled: false,
-        text: labelText,
-        inside: false,
-        opacity: 1,
-        fill: "#666666",
-        fontSize: "9px"
-      };
-      axisRange["grid"] = {
-        stroke: "#e4e4e4",
-        strokeWidth: 1,
-        strokeOpacity: 1
-      };
-      axisRanges.push(axisRange);
-    }
-
-    return axisRanges;
-  };
-
-//   for(let i=0;i<data1.length;i+=3){
-//     let ele={
-//         date:data1[i].date,
-//         id:1,
-//     };
-//     for(let j=0;j<3;j++){
-//         console.log(i,j)
-//         let 
-//         ele.ingress=data1[i].tt
-//         data2.push({
-//             ingress:data1[i].tt,
-//             egressBytes:34214,
-//             ingressBytes:132123,
-//             egress:data1[i].tt,
-//             date:,
-//             id:1
-//         })
-//     }
-// }
 
   renderChartUsingConfig = (info) => {
     
@@ -79,67 +29,84 @@ class LineChart extends Component {
             date:d.date
         }
     })
-    
-    
-    
 
       const data=[
         {
           confirmed: data2[0].tt,
-          
+       
           recovered: data2[1].tt,
+          death:data2[2].tt,
           date: data2[0].date,
           id: 1,
-          egressBytes: 211068461,
-          ingressBytes: 597120169,
+          confirmVal: data2[0].tt,
+          recoverVal: data2[1].tt,
+          deathVal:data2[2].tt,
         },
         {
-            confirmed: data2[3].tt,
-          egressBytes: 430087035,
-          ingressBytes: 553345111,
+          confirmed: data2[3].tt,   
           recovered:data2[4].tt,
+          death:data2[5].tt,
           date: data2[3].date,
-          id: 1
+          id: 1,
+          confirmVal: data2[3].tt,
+          recoverVal: data2[4].tt,
+          deathVal:data2[5].tt,
+          
         },
         {
             confirmed: data2[6].tt,
-          egressBytes: 349351559,
-          ingressBytes: 623445549,
+         
           recovered: data2[7].tt,
+          death:data2[8].tt,
           date: data2[6].date,
-          id: 1
+          id: 1,
+          confirmVal: data2[6].tt,
+          recoverVal: data2[7].tt,
+          deathVal:data2[8].tt,
         },
         {
             confirmed: data2[9].tt,
-          egressBytes: 76685065,
-          ingressBytes: 615997885,
+          
           recovered: data2[10].tt,
+          death:data2[11].tt,
           date: data2[9].date,
-          id: 1
+          id: 1,
+          confirmVal: data2[9].tt,
+          recoverVal: data2[10].tt,
+          deathVal:data2[11].tt,
         },
         {
             confirmed: data2[12].tt,
-          egressBytes: 138243743,
-          ingressBytes: 14785797,
+          
           recovered:data2[13].tt,
+          death:data2[14].tt,
           date: data2[12].date,
-          id: 1
+          id: 1,
+          confirmVal: data2[12].tt,
+          recoverVal: data2[13].tt,
+          deathVal:data2[14].tt,
         },
         {
-            confirmed:data2[15].tt,
-          egressBytes: 469731002,
-          ingressBytes: 557682299,
+          confirmed:data2[15].tt,
+         
           recovered: data2[16].tt,
+          death:data2[17].tt,
           date: data2[15].date,
-          id: 1
+          id: 1,
+          confirmVal: data2[15].tt,
+          recoverVal: data2[16].tt,
+          deathVal:data2[17].tt,
         },
         {
           confirmed: data2[18].tt,
-          egressBytes: 129187411,
-          ingressBytes: 174391615,
+         
           recovered: data2[19].tt,
+          death:data2[20].tt,
           date:data2[18].date,
-          id: 1
+          id: 1,
+          confirmVal:  data2[18].tt,
+          recoverVal: data2[19].tt,
+          deathVal:data2[20].tt,
         },
       ]
    return {
@@ -196,8 +163,8 @@ class LineChart extends Component {
       yAxes: [
         {
           type: "ValueAxis",
-          max: 770743859,
-          min: 14785797,
+          max: 200000,
+          min: 0,
           strictMinMax: true,
           id: "areaAxis",
           cursorTooltipEnabled: false,
@@ -230,10 +197,10 @@ class LineChart extends Component {
           name: "Confirmed",
           type: "LineSeries",
           dataFields: {
-            valueY: "ingressBytes",
+            valueY: "confirmVal",
             categoryX: "date"
           },
-          stroke: "#406096",
+          stroke: "#fa0504",
           strokeWidth: 2,
           yAxis: "areaAxis",
           tooltipText: "Confirmed: {confirmed}",
@@ -257,7 +224,7 @@ class LineChart extends Component {
             ]
           },
           fillOpacity: 0.1,
-          fill: am4core.color("#406096"),
+          fill: am4core.color("#fa0504"),
           segments: {
             fillModifier: {
               type: "LinearGradientModifier",
@@ -274,11 +241,11 @@ class LineChart extends Component {
           name: "Recovered",
           type: "LineSeries",
           dataFields: {
-            valueY: "egressBytes",
+            valueY: "recoverVal",
             categoryX: "date"
           },
           zIndex: 0,
-          stroke: "#f18f51",
+          stroke: "#009900",
           strokeWidth: 2,
           yAxis: "areaAxis",
           tooltipText: "Recovered: {recovered}",
@@ -302,7 +269,52 @@ class LineChart extends Component {
             ]
           },
           fillOpacity: 0.1,
-          fill: am4core.color("#f18f51"),
+          fill: am4core.color("#009900"),
+          segments: {
+            fillModifier: {
+              type: "LinearGradientModifier",
+              opacities: [1, 0.1],
+              offsets: [0, 0.5, 1],
+              gradient: {
+                rotation: 90
+              }
+            }
+          }
+        },
+        {
+          id: "deaths",
+          name: "Deaths",
+          type: "LineSeries",
+          dataFields: {
+            valueY: "deathVal",
+            categoryX: "date"
+          },
+          zIndex: 0,
+          stroke: "#666666",
+          strokeWidth: 2,
+          yAxis: "areaAxis",
+          tooltipText: "Deaths: {death}",
+          tooltip: {
+            getFillFromObject: false,
+            background: {
+              fill: "#000",
+              strokeWidth: 0,
+              fillOpacity: 0.7,
+              cornerRadius: 4
+            },
+            fontSize: "12px",
+            filters: [
+              {
+                type: "DropShadowFilter",
+                dx: 1,
+                dy: 1,
+                blur: 3,
+                color: "#373737"
+              }
+            ]
+          },
+          fillOpacity: 0.1,
+          fill: am4core.color("#666666"),
           segments: {
             fillModifier: {
               type: "LinearGradientModifier",
@@ -386,7 +398,7 @@ class LineChart extends Component {
         <div
           id="demo-chart"
           className="chart2"
-          style={{ height: "250px" }}
+          style={{ height: "290px" }}
         />
      
     );

@@ -5,7 +5,7 @@ import DonutChart from './DonutChart';
 export default function StatBox({selectedStateInfo,timelineInfo}) {
 
     return (
-         <div class="card mb-3 shadow  bg-white rounded">
+         <div class="card mb-5 shadow  bg-white rounded">
           
           <div class="card-body">
             <div class="row">
