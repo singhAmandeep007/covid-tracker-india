@@ -5,7 +5,7 @@
 + Tracking confirmed cases , recovered and deaths for each state using API https://api.covid19india.org/data.json 
 + Hovering of Table or state in Map changes the Stats.
 + Map representation of Covid Impact in each state.
-+ Linear Chart to shows past 7 days confirmed and recovered.
++ Linear Chart to shows past 7 days confirmed and recovered using API https://api.covid19india.org/states_daily.json.
 - Many features yet to be added
 @@ Hope You like It @@
 ```
