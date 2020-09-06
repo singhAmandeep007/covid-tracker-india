@@ -1,3 +1,18 @@
+[![Generic badge](https://img.shields.io/badge/Firebase-Deployed-<COLOR>.svg)](https://covidindia-7777.firebaseapp.com/)
+
+```diff
++ Application Hosted on https://covidindia-7777.firebaseapp.com/
++ Tracking confirmed cases , recovered and deaths for each state using API https://api.covid19india.org/data.json 
++ Hovering of Table or state in Map changes the Stats.
++ Map representation of Covid Impact in each state.
++ Linear Chart to shows past 7 days confirmed and recovered.
+- Many features yet to be added
+@@ Hope You like It @@
+```
+
+Live Preview : (https://covidindia-7777.firebaseapp.com/)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
