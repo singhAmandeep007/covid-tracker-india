@@ -41,7 +41,7 @@ function App() {
     try {
       const response = await fetch('https://api.covid19india.org/states_daily.json');
       const data = await response.json();
-      setTimelineInfo(data);
+      setTimelineInfo(data.states_daily);
       setLoading(false)
       console.log(data)
     }
@@ -86,6 +86,7 @@ function App() {
               {/* Stats */}
               <StatBox 
                selectedStateInfo={selectedStateInfo}
+               timelineInfo={timelineInfo}
               ></StatBox>
 
               {/* table */}

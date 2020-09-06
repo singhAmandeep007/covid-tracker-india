@@ -3,7 +3,17 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 
 class DonutChart extends Component {
+  
   chart = null;
+  
+  componentDidUpdate(){ 
+    this.chart.dispose();
+    this.setConfig();
+  }
+
+  componentDidMount() {
+      this.setConfig()
+  }
 
   componentWillUnmount() {
     if (this.chart) {
@@ -111,6 +121,7 @@ class DonutChart extends Component {
 
 
     setConfig() {
+      
         const config = this.renderChartUsingConfig(this.props.selectedStateInfo);
         this.chart = am4core.createFromConfig(
             config,
@@ -120,27 +131,20 @@ class DonutChart extends Component {
     }
 
 
-    componentDidUpdate(){ 
-        this.chart.dispose();
-        this.setConfig();
-    }
-
-    componentDidMount() {
-        this.setConfig()
-    }
+  
 
 
     render() {
 
         return (
-        <div>
+       
             <div
             id="demo-chart"
         
-            style={{ height: "250px" ,width:'100%'}}
+            style={{ height: "250px" }}
             />
-            <div id="legend"  />
-        </div>
+            
+   
         );
     }
 }
