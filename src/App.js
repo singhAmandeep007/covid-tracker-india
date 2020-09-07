@@ -19,12 +19,13 @@ function App() {
 
   const colors=['red','blue','green','grey'];
 
+  //National Level :Time series, State-wise stats and Test counts
   async function getInfo() {
     
     try {
       const response = await fetch('https://api.covid19india.org/data.json');
       const data = await response.json();
-      setInfo(data);
+      setInfo(data.statewise);
       setSelectedStateInfo(data.statewise[0]);
       console.log(data)
       
@@ -36,7 +37,7 @@ function App() {
   }
 
   
-
+  //State Level : Daily changes
   async function getTimelineInfo() {
     try {
       const response = await fetch('https://api.covid19india.org/states_daily.json');
@@ -51,21 +52,17 @@ function App() {
     }
   }
 
-  const handleHover=(state)=>{
-    console.log(state)
-    // setSelectedState(state)
-    for(let s of info.statewise ){
-      if(s.statecode===state){       
-        setSelectedStateInfo(s)
-      }
-    }  
-  }
+  
   
   useEffect(() => {
       getInfo();
       getTimelineInfo();
    }, []);
 
+  const handleHover=(statecode)=>{
+    console.log('handlehover called') 
+    setSelectedStateInfo(info.find(i => i.statecode === statecode))  
+  }
 
       if(loading){
         return(
@@ -84,15 +81,16 @@ function App() {
               <p>Let's all pray to make out Earth <strong>Covid-19 free soon</strong>. Stay Safe and Stay Home</p>
              
               {/* Stats */}
+
               <StatBox 
                selectedStateInfo={selectedStateInfo}
                timelineInfo={timelineInfo}
               ></StatBox>
-
+              
               {/* table */}
               
               <Table  
-               data={info.statewise}
+               info={info}
                handleHover={handleHover}
               ></Table>
              
@@ -103,8 +101,7 @@ function App() {
               <h2 class="mt-4">India Map</h2>
               <p> <strong>Hover over</strong> a state or table row to see more details.</p>
 
-              <div class="card mb-3 shadow  bg-white rounded">
-                
+              <div class="card mb-3 shadow  bg-white rounded">               
                 <div class="card-body ">
                   <div class="row">
                     {/* infobox */}
@@ -141,7 +138,7 @@ function App() {
                     <div class="col-xl-12 themed-grid-col mb-3">
 
                           <Map
-                          info={info.statewise}
+                          info={info}
                           handleHover={handleHover}
                           ></Map>
                       
@@ -151,9 +148,6 @@ function App() {
                 
                 </div>
               </div>
-
-
-
 
               </div>
             </div>

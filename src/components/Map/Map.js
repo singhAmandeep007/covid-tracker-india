@@ -38,10 +38,9 @@ const geographyStyle = {
   }
 };
 
-// will generate random heatmap data on every call
-const getHeatMapData = (info) => {
+const  getHeatMapData =  (info) => {
 
-return info.slice(1).map(s=>{
+return  info.slice(1).map(s=>{
       return {
         id:s.statecode,
         state:s.state,
@@ -55,23 +54,23 @@ function Map({handleHover,info}) {
   const [tooltipContent, setTooltipContent] = useState('');
   const [data, setData] = useState([]);
 
-
-  useEffect(()=>{
-    
+  useEffect(()=>{   
     if(info && info.length>1){
       setData(getHeatMapData(info))
     }
   },[info])
-
-  //set color
+  
+  //set color according to scale
   const colorScale = scaleQuantile()
-    .domain(data.map(d => d.value))
+    .domain(data.map((d)=>{
+     return d.value;
+    }))
     .range(COLOR_RANGE);
   //handle hover
   const onMouseEnter = (geo, current = { value: 'NA' }) => {
     return () => {
       handleHover(geo.id);
-      setTooltipContent(`${geo.properties.name}: ${current.value}`);
+      setTooltipContent(`${geo.properties.name}: Confirmed: ${current.value}`);
     };
   };
   //handle mouse out
@@ -93,10 +92,8 @@ function Map({handleHover,info}) {
         >
           <Geographies geography={INDIA_TOPO_JSON}>
             {({ geographies }) =>
-              geographies.map(geo => {
-               
-                //returns either true or false for geo.id 
-                const current = data.find(s => s.id === geo.id);
+              geographies.map(geo => {    
+                const current = data.find(s => s.id === geo.id);            
                 return (
                   <Geography
                     key={geo.rsmKey}

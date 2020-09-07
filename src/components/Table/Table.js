@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Table.css';
 
-export default function Table({data,handleHover}) {
+export default function Table({info,handleHover}) {
   
     return (
      
@@ -22,7 +22,7 @@ export default function Table({data,handleHover}) {
               </thead>
               <tbody>
     
-                {data && data.slice(1).map((d,index) =>{
+                {info && info.slice(1).map((d,index) =>{
                 return(                  
                   <tr 
                     key={index} 
