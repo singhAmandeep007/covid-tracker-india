@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "build",
+    "site": "covidindia2020",
     "ignore": [
       "firebase.json",
       "**/.*",

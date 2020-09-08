@@ -36,7 +36,6 @@ function App() {
     }
   }
 
-  
   //State Level : Daily changes
   async function getTimelineInfo() {
     try {
@@ -51,8 +50,6 @@ function App() {
       setLoading(true);
     }
   }
-
-  
   
   useEffect(() => {
       getInfo();
@@ -60,7 +57,6 @@ function App() {
    }, []);
 
   const handleHover=(statecode)=>{
-    console.log('handlehover called') 
     setSelectedStateInfo(info.find(i => i.statecode === statecode))  
   }
 
@@ -86,7 +82,7 @@ function App() {
                selectedStateInfo={selectedStateInfo}
                timelineInfo={timelineInfo}
               ></StatBox>
-              
+
               {/* table */}
               
               <Table  
@@ -99,7 +95,7 @@ function App() {
               {/* right side */}
               <div  className="col-lg-6 themed-grid-col ">
               <h2 class="mt-4">India Map</h2>
-              <p> <strong>Hover over</strong> a state or table row to see more details.</p>
+              <p> <strong>Hover over</strong> a state, table row, donut chart or line chart to see more details.</p>
 
               <div class="card mb-3 shadow  bg-white rounded">               
                 <div class="card-body ">
