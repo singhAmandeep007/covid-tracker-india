@@ -12,9 +12,9 @@ class DonutChart extends Component {
   }
 
   componentDidMount() {
-      this.setConfig()
+    this.setConfig()
   }
-
+  
   componentWillUnmount() {
     if (this.chart) {
       this.chart.dispose();
@@ -45,7 +45,7 @@ class DonutChart extends Component {
     const colors = ["rgb(251, 4, 4)", "rgb(51, 102, 255)", "rgb(0, 153, 0)","rgb(102, 102, 102)"];
     return {
       innerRadius: 80,
-      radius: 110,
+      radius: 120,
       data: usersData,
       
       series: [
@@ -59,11 +59,10 @@ class DonutChart extends Component {
             {
               type: "Label",
               forceCreate: true,
-              text: `[font-weight: 900;text-align;center;]${usersData[0].count} \n [font-weight:400;text-shadow:1px 1px  #b3b3b3]Confirmed`,
+              text: `[font-weight: 900;text-align: center;]${usersData[0].count} \n [font-weight:400;text-shadow:1px 1px  #b3b3b3]Confirmed`,
               horizontalCenter: "middle",
               verticalCenter: "middle",
-              fontSize: 20,
-             
+              fontSize: 20,            
               
             }
           ],

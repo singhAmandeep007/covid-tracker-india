@@ -67,14 +67,18 @@ function App() {
       }
 
       else{
+      
         return(
           <div className="container-fluid m2">
 
             <div className="row">
               {/* left side */}
               <div  className="col-lg-6 themed-grid-col  ">
-              <h2 className="mt-4">India Covid-19 tracker</h2>
-              <p>Let's all pray to make out Earth <strong>Covid-19 free soon</strong>. Stay Safe and Stay Home</p>
+              <div className="white">
+              <h2 className="mt-4"><span class="badge badge-secondary">India Covid-19 tracker</span></h2>
+              <p>Let's all pray to make out Earth <strong class="text-success">Covid-19 free </strong>soon. <strong class="text-warning">Stay Safe</strong> and <strong class="text-warning">Stay Home .</strong></p>
+              </div>
+              
              
               {/* Stats */}
 
@@ -84,19 +88,20 @@ function App() {
               ></StatBox>
 
               {/* table */}
-              
-              <Table  
+               <Table  
                info={info}
                handleHover={handleHover}
-              ></Table>
+              ></Table> 
+              
              
              
               </div>
               {/* right side */}
               <div  className="col-lg-6 themed-grid-col ">
-              <h2 class="mt-4">India Map</h2>
-              <p> <strong>Hover over</strong> a state, table row, donut chart or line chart to see more details.</p>
-
+              <div className="white">
+              <h2 class="mt-4"><span class="badge badge-secondary">India Map</span></h2>
+              <p> <strong class="text-primary">Hover over</strong> a state, table row, donut chart or line chart to see <strong class="text-primary">more details .</strong></p>
+              </div>
               <div class="card mb-3 shadow  bg-white rounded">               
                 <div class="card-body ">
                   <div class="row">
@@ -147,13 +152,13 @@ function App() {
 
               </div>
             </div>
-            <footer class="page-footer font-small ">
+            <footer class="page-footer font-small white">
                 <div class="footer-copyright text-center py-3">Amandeep Singh © 2020 Copyright</div>
             </footer>
           </div>
         )
+      
       }
-    
 }
 
 export default App;

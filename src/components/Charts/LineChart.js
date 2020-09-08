@@ -6,14 +6,17 @@ class LineChart extends Component {
   
   chart = null;
 
-  componentDidUpdate(){ 
+  componentDidUpdate() { 
+    console.log('linear chart updated')
     this.chart.dispose();
     this.setConfig();
   }
   componentDidMount() {
     this.setConfig()
   }
-
+  shouldComponentUpdate(nextProps,nextState){
+    return this.props.info !== nextProps.info 
+  }
   componentWillUnmount() {
     if (this.chart) {
       this.chart.dispose();
@@ -163,7 +166,7 @@ class LineChart extends Component {
       yAxes: [
         {
           type: "ValueAxis",
-          max: 200000,
+          max: 140000,
           min: 0,
           strictMinMax: true,
           id: "areaAxis",
@@ -188,9 +191,6 @@ class LineChart extends Component {
           
         }
       ],
-
-
-
       series: [
         {
           id: "confirmed",
