@@ -10,7 +10,7 @@
 @@ Hope You like It @@
 ```
 
-Live Preview : (https://covidindia-7777.firebaseapp.com/)
+Live Preview : (https://covidindia2020.firebaseapp.com/)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
