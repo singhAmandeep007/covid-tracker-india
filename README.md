@@ -1,7 +1,7 @@
-[![Generic badge](https://img.shields.io/badge/Firebase-Deployed-<COLOR>.svg)](https://covidindia-7777.firebaseapp.com/)
+[![Generic badge](https://img.shields.io/badge/Firebase-Deployed-<COLOR>.svg)](https://covidindia2020.web.app/)
 
 ```diff
-+ Application Hosted on https://covidindia-7777.firebaseapp.com/
++ Application Hosted on https://covidindia2020.web.app/
 + Tracking confirmed cases , recovered and deaths for each state using API https://api.covid19india.org/data.json 
 + Hovering of Table or state in Map changes the Stats.
 + Map representation of Covid Impact in each state.
