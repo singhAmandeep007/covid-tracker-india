@@ -3,11 +3,11 @@
 ```diff
 + Application Hosted on https://covidindia2020.web.app/
 + Tracking confirmed cases , recovered and deaths for each state using API https://api.covid19india.org/data.json 
-+ Hovering of Table or state in Map changes the Stats.
-+ Map representation of Covid Impact in each state.
-+ Linear Chart to shows past 7 days confirmed and recovered using API https://api.covid19india.org/states_daily.json.
++ Hovering of Table or state in Map changes the instantly changes donut chart and info boxes representing the information of that state.
++ Choropleth Map of India represents Covid Impact in each state.
++ Linear Chart to shows past 7 days confirmed, recovered and deaths aggregate using API https://api.covid19india.org/states_daily.json.
 - Many features yet to be added
-@@ Hope You like It @@
+@@ Hope You find it useful, Thank you. @@
 ```
 
 Live Preview : (https://covidindia2020.firebaseapp.com/)
