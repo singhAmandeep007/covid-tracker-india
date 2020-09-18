@@ -6,6 +6,7 @@
 + Hovering of Table or state in Map changes the instantly changes donut chart and info boxes representing the information of that state.
 + Choropleth Map of India represents Covid Impact in each state.
 + Linear Chart to shows past 7 days confirmed, recovered and deaths aggregate using API https://api.covid19india.org/states_daily.json.
++ Fully responsive and fast.
 - Many features yet to be added
 @@ Hope You find it useful, Thank you. @@
 ```
