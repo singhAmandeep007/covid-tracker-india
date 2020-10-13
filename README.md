@@ -1,18 +1,60 @@
+## ✍ Welcome to the Covid-19 India Tracker wiki!
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![Generic badge](https://img.shields.io/badge/Firebase-Deployed-<COLOR>.svg)](https://covidindia2020.web.app/)
 
+***
+## ⚡ Technologies
+
+![React Js](https://img.shields.io/badge/-react-black?style=flat-square&logo=react)
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3)
+![Bootstrap](https://img.shields.io/badge/-bootstrap-563D7C?style=flat-square)
+
+***
+## Project name: Covid-19-India Tracker
+
+<b>Description:</b> A responsive site that displays up to date COVID-19 statistics for India and its states.
+
+***
+## Features: 
+
 ```diff
-+ Application Hosted on https://covidindia2020.web.app/
++ Live data: Shows the most recent data, and updates automatically.
 + Tracking confirmed cases , recovered and deaths for each state using API https://api.covid19india.org/data.json 
-+ Hovering of Table or state in Map changes the instantly changes donut chart and info boxes representing the information of that state.
++ Hovering on Table or state in Map instantly updates donut chart and info boxes representing the information of that state.
 + Choropleth Map of India represents Covid Impact in each state.
-+ Linear Chart to shows past 7 days confirmed, recovered and deaths aggregate using API https://api.covid19india.org/states_daily.json.
-+ Fully responsive and fast.
-- Many features yet to be added
-@@ Hope You find it useful, Thank you. @@
++ Linear Chart shows past 7 days confirmed, recovered and deaths aggregate using API https://api.covid19india.org/states_daily.json.
++ Statistics: Including the number of confirmed, recovered, and deaths, in addition to percents.
++ Responsive Application.
 ```
+***
+## Live Preview : (https://covidindia2020.firebaseapp.com/)
 
-Live Preview : (https://covidindia2020.firebaseapp.com/)
+***
+## Screenshots 💻
 
+<h1 align="center">HOME PAGE</h1>
+<p align="center">
+  <img width="750" src="https://res.cloudinary.com/dryiuvv1l/image/upload/v1602563893/covid-india/Annotation_2020-10-13_095421_xt4sx1.png">
+</p>
+***
+
+<h1 align="center">Charts</h1> 
+<p align="center">
+  <img width="750" src="https://res.cloudinary.com/dryiuvv1l/image/upload/v1602563892/covid-india/Annotation_2020-10-13_095503_x3tzmz.png">
+</p>
+***
+
+<h1 align="center">Responsive</h1>
+<p align="center">
+  <img width="750" src="https://res.cloudinary.com/dryiuvv1l/image/upload/v1602563892/covid-india/Annotation_2020-10-13_095712_qtnwy3.png">
+</p>
+***
+<h1 align="center">Performance</h1>
+<p align="center">
+  <img width="750" src="https://res.cloudinary.com/dryiuvv1l/image/upload/v1602563893/covid-india/Annotation_2020-10-13_100620_ynz9si.png">
+</p>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
