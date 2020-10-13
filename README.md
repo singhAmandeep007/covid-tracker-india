@@ -1,7 +1,6 @@
-## ✍ Welcome to the Covid-19 India Tracker wiki!
+## 📃 Welcome to the Covid-19 India Tracker wiki!
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
-[![Generic badge](https://img.shields.io/badge/Firebase-Deployed-<COLOR>.svg)](https://covidindia2020.web.app/)
 
 ***
 ## ⚡ Technologies
@@ -12,12 +11,12 @@
 ![Bootstrap](https://img.shields.io/badge/-bootstrap-563D7C?style=flat-square)
 
 ***
-## Project name: Covid-19-India Tracker
+## ✍ Project name: Covid-19-India Tracker
 
 <b>Description:</b> A responsive site that displays up to date COVID-19 statistics for India and its states.
 
 ***
-## Features: 
+## 📌 Features: 
 
 ```diff
 + Live data: Shows the most recent data, and updates automatically.
@@ -29,10 +28,10 @@
 + Responsive Application.
 ```
 ***
-## Live Preview : (https://covidindia2020.firebaseapp.com/)
+## 📱 Live Preview : (https://covidindia2020.firebaseapp.com/)
 
 ***
-## Screenshots 💻
+## 💻 Screenshots
 
 <h1 align="center">HOME PAGE</h1>
 <p align="center">
