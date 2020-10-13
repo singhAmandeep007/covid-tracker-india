@@ -5,10 +5,13 @@
 ***
 ## ⚡ Technologies
 
-![React Js](https://img.shields.io/badge/-react-black?style=flat-square&logo=react)
+[![npm](https://aleen42.github.io/badges/src/npm.svg)](https://aleen42.github.io/badges/src/npm.svg)
+[![react](https://aleen42.github.io/badges/src/react.svg)](https://aleen42.github.io/badges/src/react.svg)
+<img src="https://res.cloudinary.com/dryiuvv1l/image/upload/v1602572150/covid-india/UI_Framework__Bootstrap_meeuhj.png"/>
+[![javascript](https://aleen42.github.io/badges/src/javascript.svg)](https://aleen42.github.io/badges/src/javascript.svg)
 ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3)
-![Bootstrap](https://img.shields.io/badge/-bootstrap-563D7C?style=flat-square)
+
 
 ***
 ## ✍ Project name: Covid-19-India Tracker
