@@ -1,8 +1,6 @@
 ## 📃 Welcome to the Covid-19 India Tracker wiki!
 
-[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 
-***
 ## ⚡ Technologies
 
 [![npm](https://aleen42.github.io/badges/src/npm.svg)](https://aleen42.github.io/badges/src/npm.svg)
@@ -40,19 +38,19 @@
 <p align="center">
   <img width="750" src="https://res.cloudinary.com/dryiuvv1l/image/upload/v1602563893/covid-india/Annotation_2020-10-13_095421_xt4sx1.png">
 </p>
-***
+
 
 <h1 align="center">Charts</h1> 
 <p align="center">
   <img width="750" src="https://res.cloudinary.com/dryiuvv1l/image/upload/v1602563892/covid-india/Annotation_2020-10-13_095503_x3tzmz.png">
 </p>
-***
+
 
 <h1 align="center">Responsive</h1>
 <p align="center">
   <img width="750" src="https://res.cloudinary.com/dryiuvv1l/image/upload/v1602563892/covid-india/Annotation_2020-10-13_095712_qtnwy3.png">
 </p>
-***
+
 <h1 align="center">Performance</h1>
 <p align="center">
   <img width="750" src="https://res.cloudinary.com/dryiuvv1l/image/upload/v1602563893/covid-india/Annotation_2020-10-13_100620_ynz9si.png">
