@@ -3,19 +3,19 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 
 class LineChart extends Component {
-  
+
   chart = null;
 
-  componentDidUpdate() { 
-    console.log('linear chart updated')
+  componentDidUpdate() {
+    //console.log('linear chart updated')
     this.chart.dispose();
     this.setConfig();
   }
   componentDidMount() {
     this.setConfig()
   }
-  shouldComponentUpdate(nextProps,nextState){
-    return this.props.info !== nextProps.info 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.weeklyData !== nextProps.weeklyData
   }
   componentWillUnmount() {
     if (this.chart) {
@@ -24,96 +24,25 @@ class LineChart extends Component {
   }
 
 
-  renderChartUsingConfig = (info) => {
-    
-    const data2=info.slice(info.length - 21).map((d)=>{
-        return {
-            tt:d.tt,
-            date:d.date
-        }
-    })
+  renderChartUsingConfig = (weeklyData) => {
+    //console.log('weeklyData: ', weeklyData)
 
-      const data=[
-        {
-          confirmed: data2[0].tt,
-       
-          recovered: data2[1].tt,
-          death:data2[2].tt,
-          date: data2[0].date,
-          id: 1,
-          confirmVal: data2[0].tt,
-          recoverVal: data2[1].tt,
-          deathVal:data2[2].tt,
-        },
-        {
-          confirmed: data2[3].tt,   
-          recovered:data2[4].tt,
-          death:data2[5].tt,
-          date: data2[3].date,
-          id: 1,
-          confirmVal: data2[3].tt,
-          recoverVal: data2[4].tt,
-          deathVal:data2[5].tt,
-          
-        },
-        {
-            confirmed: data2[6].tt,
-         
-          recovered: data2[7].tt,
-          death:data2[8].tt,
-          date: data2[6].date,
-          id: 1,
-          confirmVal: data2[6].tt,
-          recoverVal: data2[7].tt,
-          deathVal:data2[8].tt,
-        },
-        {
-            confirmed: data2[9].tt,
-          
-          recovered: data2[10].tt,
-          death:data2[11].tt,
-          date: data2[9].date,
-          id: 1,
-          confirmVal: data2[9].tt,
-          recoverVal: data2[10].tt,
-          deathVal:data2[11].tt,
-        },
-        {
-            confirmed: data2[12].tt,
-          
-          recovered:data2[13].tt,
-          death:data2[14].tt,
-          date: data2[12].date,
-          id: 1,
-          confirmVal: data2[12].tt,
-          recoverVal: data2[13].tt,
-          deathVal:data2[14].tt,
-        },
-        {
-          confirmed:data2[15].tt,
-         
-          recovered: data2[16].tt,
-          death:data2[17].tt,
-          date: data2[15].date,
-          id: 1,
-          confirmVal: data2[15].tt,
-          recoverVal: data2[16].tt,
-          deathVal:data2[17].tt,
-        },
-        {
-          confirmed: data2[18].tt,
-         
-          recovered: data2[19].tt,
-          death:data2[20].tt,
-          date:data2[18].date,
-          id: 1,
-          confirmVal:  data2[18].tt,
-          recoverVal: data2[19].tt,
-          deathVal:data2[20].tt,
-        },
-      ]
-   return {
-      data: data ,
+    const data = weeklyData.map((d) => {
+      return {
+        confirmed: d.dailyconfirmed,
+        recovered: d.dailyrecovered,
+        death: d.dailydeceased,
+        confirmVal: d.dailyconfirmed,
+        recoverVal: d.dailyrecovered,
+        deathVal: d.dailydeceased,
+        date: d.dateymd,
+        id: 1
+      }
+    })
+    //console.log('data: ', data);
+
+    return {
+      data: data,
       mouseWheelBehavior: "none",
       xAxes: [
         {
@@ -126,7 +55,7 @@ class LineChart extends Component {
             category: "date"
           },
           title: {
-            text: "Last 7 days",
+            text: "Date",
             fontSize: "12px",
             fill: "#666666",
             marginTop: "10px"
@@ -174,6 +103,12 @@ class LineChart extends Component {
           tooltip: {
             disabled: true
           },
+          title: {
+            text: "Cases",
+            fontSize: "12px",
+            fill: "#666666",
+            marginTop: "10px"
+          },
           renderer: {
             opposite: true,
             labels: {
@@ -188,7 +123,7 @@ class LineChart extends Component {
               disabled: true
             }
           },
-          
+
         }
       ],
       series: [
@@ -326,7 +261,7 @@ class LineChart extends Component {
             }
           }
         },
-          
+
       ],
       cursor: {
         xAxis: "dateAxis",
@@ -378,29 +313,29 @@ class LineChart extends Component {
         }
       }
     };
-    };
+  };
 
 
-    setConfig(){
-        const config=this.renderChartUsingConfig(this.props.timelineInfo)
-        this.chart = am4core.createFromConfig(
-            config,
-            "chart2",
-            am4charts.XYChart
-          );
-    }
-    
+  setConfig() {
+    const config = this.renderChartUsingConfig(this.props.weeklyData)
+    this.chart = am4core.createFromConfig(
+      config,
+      "chart2",
+      am4charts.XYChart
+    );
+  }
+
 
 
   render() {
     return (
-    
-        <div
-          id="demo-chart"
-          className="chart2"
-          style={{ height: "290px" }}
-        />
-     
+
+      <div
+        id="demo-chart"
+        className="chart2"
+        style={{ height: "290px" }}
+      />
+
     );
   }
 }

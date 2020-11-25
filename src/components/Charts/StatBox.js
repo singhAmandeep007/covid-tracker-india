@@ -3,8 +3,7 @@ import LineChart from './LineChart';
 import DonutChart from './DonutChart';
 
 
-export default function StatBox({ selectedStateInfo, timelineInfo }) {
-
+export default function StatBox({ selectedStateInfo, weeklyData }) {
   return (
     <div className="card mb-5 shadow  bg-white rounded">
       <div className="card-body">
@@ -17,7 +16,7 @@ export default function StatBox({ selectedStateInfo, timelineInfo }) {
           </div>
           <div className="col-xl-6 themed-grid-col">
             <LineChart
-              timelineInfo={timelineInfo}
+              weeklyData={weeklyData}
             ></LineChart>
           </div>
         </div>

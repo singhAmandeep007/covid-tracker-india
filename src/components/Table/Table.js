@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import './Table.css';
 
 export default function Table({ info, handleHover }) {
+
+  //console.log(info)
   useEffect(() => { }, [info]);
   return (
     <div>
@@ -19,7 +21,15 @@ export default function Table({ info, handleHover }) {
                 </tr>
               </thead>
               <tbody>
-
+                <tr
+                  key={"aja2"}
+                >
+                  <th scope="row">Total India</th>
+                  <td>{(info[0].confirmed)}</td>
+                  <td>{(info[0].active)}</td>
+                  <td>{(info[0].recovered)}</td>
+                  <td>{(info[0].deaths)}</td>
+                </tr>
                 {info && info.slice(1).map((d, index) => {
                   return (
                     <tr
@@ -35,7 +45,6 @@ export default function Table({ info, handleHover }) {
                     </tr>
                   )
                 })}
-
               </tbody>
             </table>
           </div>

@@ -10,9 +10,8 @@ import './css/App.css';
 
 function App() {
   const [info, setInfo] = useState([]);
-  const [timelineInfo, setTimelineInfo] = useState([]);
   const [selectedStateInfo, setSelectedStateInfo] = useState({});
-
+  const [weeklyData, setWeeklyData] = useState([]);
   // const[selectedState,setSelectedState]=useState('TT');
 
   const [loading, setLoading] = useState(true);
@@ -23,38 +22,29 @@ function App() {
   async function getInfo() {
 
     try {
-      const data = await (await fetch('https://api.covid19india.org/data.json')).json();
-      setInfo(data.statewise);
-      setSelectedStateInfo(data.statewise[0]);
-      console.log(data)
+      const { cases_time_series, statewise, tested } = await (await fetch('https://api.covid19india.org/data.json')).json();
 
-    }
-    catch (e) {
-      console.error('There has been a problem with your fetch operation:', e);
-      setLoading(true);
-    }
-  }
+      setInfo(statewise);
 
-  //State Level : Daily changes
-  async function getTimelineInfo() {
-    try {
-      const data = await (await fetch('https://api.covid19india.org/states_daily.json')).json();
-      setTimelineInfo(data.states_daily);
+      setSelectedStateInfo(statewise[0]);
+
+      setWeeklyData(cases_time_series.slice(cases_time_series.length - 7));
+      // console.log('cases_time_series: ', cases_time_series)
       setLoading(false)
-      console.log(data)
     }
     catch (e) {
       console.error('There has been a problem with your fetch operation:', e);
       setLoading(true);
     }
   }
+
 
   useEffect(() => {
     getInfo();
-    getTimelineInfo();
   }, []);
 
   const handleHover = (statecode) => {
+    //console.log(selectedStateInfo);
     setSelectedStateInfo(info.find(i => i.statecode === statecode))
   }
 
@@ -82,7 +72,7 @@ function App() {
 
             <StatBox
               selectedStateInfo={selectedStateInfo}
-              timelineInfo={timelineInfo}
+              weeklyData={weeklyData}
             ></StatBox>
 
             {/* table */}
