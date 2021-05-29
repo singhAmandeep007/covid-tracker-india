@@ -22,7 +22,7 @@ function App() {
   async function getInfo() {
 
     try {
-      const { cases_time_series, statewise, tested } = await (await fetch('https://api.covid19india.org/data.json')).json();
+      const { cases_time_series, statewise } = await (await fetch('https://api.covid19india.org/data.json')).json();
 
       setInfo(statewise);
 

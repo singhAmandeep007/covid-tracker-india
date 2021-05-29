@@ -3,26 +3,28 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 
 class DonutChart extends Component {
-  
+
   chart = null;
-  
-  componentDidUpdate(){ 
-    this.chart.dispose();
+
+  componentDidUpdate() {
+    if (this.chart) {
+      this.chart.dispose();
+    }
     this.setConfig();
   }
 
   componentDidMount() {
     this.setConfig()
   }
-  
+
   componentWillUnmount() {
     if (this.chart) {
       this.chart.dispose();
     }
   }
-  
+
   renderChartUsingConfig = (info) => {
-    
+
     const usersData = [
       {
         userType: "Confirmed",
@@ -42,12 +44,12 @@ class DonutChart extends Component {
       }
     ];
 
-    const colors = ["rgb(251, 4, 4)", "rgb(51, 102, 255)", "rgb(0, 153, 0)","rgb(102, 102, 102)"];
+    const colors = ["rgb(251, 4, 4)", "rgb(51, 102, 255)", "rgb(0, 153, 0)", "rgb(102, 102, 102)"];
     return {
       innerRadius: 80,
       radius: 120,
       data: usersData,
-      
+
       series: [
         {
           type: "PieSeries",
@@ -62,8 +64,8 @@ class DonutChart extends Component {
               text: `[font-weight: 900;text-align: center;]${usersData[0].count} \n [font-weight:400;text-shadow:1px 1px  #b3b3b3]Confirmed`,
               horizontalCenter: "middle",
               verticalCenter: "middle",
-              fontSize: 20,            
-              
+              fontSize: 20,
+
             }
           ],
           tooltip: {
@@ -114,38 +116,38 @@ class DonutChart extends Component {
         }
       ]
     };
-   
-    
+
+
   };
 
 
-    setConfig() {
-      
-        const config = this.renderChartUsingConfig(this.props.selectedStateInfo);
-        this.chart = am4core.createFromConfig(
-            config,
-            "demo-chart",
-            am4charts.PieChart
-        );
-    }
+  setConfig() {
+
+    const config = this.renderChartUsingConfig(this.props.selectedStateInfo);
+    this.chart = am4core.createFromConfig(
+      config,
+      "demo-chart",
+      am4charts.PieChart
+    );
+  }
 
 
-  
 
 
-    render() {
 
-        return (
-       
-            <div
-            id="demo-chart"
-        
-            style={{ height: "290px" }}
-            />
-            
-   
-        );
-    }
+  render() {
+
+    return (
+
+      <div
+        id="demo-chart"
+
+        style={{ height: "290px" }}
+      />
+
+
+    );
+  }
 }
 
 export default DonutChart;

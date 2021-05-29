@@ -39,7 +39,16 @@ class LineChart extends Component {
         id: 1
       }
     })
-    //console.log('data: ', data);
+    console.log('data: ', data);
+
+    const getMaxY = function (data) {
+      let arr = [];
+      for (let i of data) {
+        let max = Math.max(i.confirmed, i.recovered, i.death)
+        arr.push(max)
+      }
+      return Math.max(...arr)
+    }
 
     return {
       data: data,
@@ -95,7 +104,7 @@ class LineChart extends Component {
       yAxes: [
         {
           type: "ValueAxis",
-          max: 140000,
+          max: getMaxY(data) + 50000,
           min: 0,
           strictMinMax: true,
           id: "areaAxis",
