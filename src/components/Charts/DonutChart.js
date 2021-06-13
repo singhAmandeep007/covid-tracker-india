@@ -1,153 +1,89 @@
-import React, { Component } from "react";
+import React,{useRef,useLayoutEffect} from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
-class DonutChart extends Component {
+/* Enable theme(s) */
+am4core.useTheme(am4themes_animated);
 
-  chart = null;
+function DonutChart({selectedStateInfo}){
 
-  componentDidUpdate() {
-    if (this.chart) {
-      this.chart.dispose();
-    }
-    this.setConfig();
-  }
+    const donutChart = useRef(null);
 
-  componentDidMount() {
-    this.setConfig()
-  }
-
-  componentWillUnmount() {
-    if (this.chart) {
-      this.chart.dispose();
-    }
-  }
-
-  renderChartUsingConfig = (info) => {
-
-    const usersData = [
-      {
-        userType: "Confirmed",
-        count: info.confirmed
-      },
-      {
-        userType: "Active",
-        count: info.active
-      },
-      {
-        userType: "Recovered",
-        count: info.recovered
-      },
-      {
-        userType: "Deaths",
-        count: info.deaths
-      }
-    ];
-
-    const colors = ["rgb(251, 4, 4)", "rgb(51, 102, 255)", "rgb(0, 153, 0)", "rgb(102, 102, 102)"];
-    return {
-      innerRadius: 80,
-      radius: 120,
-      data: usersData,
-
-      series: [
+    useLayoutEffect(()=>{
+      // Create chart instance
+      let x = am4core.create("donutChartDiv", am4charts.PieChart);
+      const stateData = [
         {
-          type: "PieSeries",
-          dataFields: {
-            value: "count",
-            category: "userType"
-          },
-          children: [
-            {
-              type: "Label",
-              forceCreate: true,
-              text: `[font-weight: 900;text-align: center;]${usersData[0].count} \n [font-weight:400;text-shadow:1px 1px  #b3b3b3]Confirmed`,
-              horizontalCenter: "middle",
-              verticalCenter: "middle",
-              fontSize: 20,
-
-            }
-          ],
-          tooltip: {
-            getFillFromObject: false,
-            background: {
-              fill: "#000",
-              strokeWidth: 0,
-              fillOpacity: 0.7,
-              cornerRadius: 4
-            },
-            fontSize: "12px",
-            filters: [
-              {
-                type: "DropShadowFilter",
-                dx: 1,
-                dy: 1,
-                blur: 3,
-                color: "#373737"
-              }
-            ]
-          },
-          slices: {
-            states: {
-              hover: {
-                properties: {
-                  scale: 1
-                }
-              },
-              active: {
-                properties: {
-                  shiftRadius: 0
-                }
-              }
-            },
-            stroke: "#fff",
-            strokeWidth: 1,
-            tooltipHTML: `<div class="tooltip_column" style="width: auto">{count} {userType}</div>`
-          },
-          colors: {
-            list: colors
-          },
-          ticks: {
-            disabled: true
-          },
-          labels: {
-            disabled: true
-          }
+          type: "Confirmed",
+          count: selectedStateInfo.confirmed,
+          "color": am4core.color("#db2828")
+        },
+        {
+          type: "Active",
+          count: selectedStateInfo.active,
+          "color": am4core.color("#2185d0")
+        },
+        {
+          type: "Recovered",
+          count: selectedStateInfo.recovered,
+          "color": am4core.color("#21ba45")
+        },
+        {
+          type: "Deaths",
+          count: selectedStateInfo.deaths,
+          "color": am4core.color("#767676")
         }
-      ]
-    };
+      ];
+      x.data = stateData;
+      // radius
+      x.innerRadius = am4core.percent(50);
+      // Add and configure Series
+      let pieSeries = x.series.push(new am4charts.PieSeries());
+      pieSeries.dataFields.value = "count";
+      pieSeries.dataFields.category = "type";
+      pieSeries.slices.template.propertyFields.fill = "color";
+      // labels
+      pieSeries.alignLabels = false;
+      pieSeries.labels.template.text = "{type}: {value.formatNumber('#,###.a')}";
+      // Center Label
+      let centerLabel = pieSeries.createChild(am4core.Label);
+      centerLabel.text = `${selectedStateInfo.state}`;
+      centerLabel.truncate=true;
+      centerLabel.maxWidth=150
+      centerLabel.wrap=true;
+      centerLabel.fontSize = 20;
+      centerLabel.horizontalCenter = "middle";
+      centerLabel.verticalCenter = "middle";
+      // Set up fills
+      pieSeries.slices.template.fillOpacity = 1;
+      // hover effect
+      pieSeries.slices.template.states.getKey("hover").properties.scale = 1;
+      pieSeries.slices.template.states.getKey("hover").properties.fillOpacity = 0.5;
+      
+      // Add a legend
+      x.legend = new am4charts.Legend();
+      x.legend.align = "right";
+      x.legend.position = "right";
+      x.legend.valueLabels.template.align = "left";
+      x.legend.valueLabels.template.textAlign = "start"; 
 
+      // Updating
+      x.dataSource.updateCurrentData = true;
 
-  };
-
-
-  setConfig() {
-
-    const config = this.renderChartUsingConfig(this.props.selectedStateInfo);
-    this.chart = am4core.createFromConfig(
-      config,
-      "demo-chart",
-      am4charts.PieChart
-    );
-  }
-
-
-
-
-
-  render() {
-
+      donutChart.current = x;
+      return () => {
+        x.dispose();
+      };
+    },[selectedStateInfo])
+    
     return (
-
       <div
-        id="demo-chart"
-
-        style={{ height: "290px" }}
+        id="donutChartDiv"
+        style={{ height: "300px" }}
       />
-
-
     );
-  }
 }
+
 
 export default DonutChart;
