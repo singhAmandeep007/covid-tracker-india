@@ -1,0 +1,12 @@
+.infoBox_red {
+  background: rgb(255, 204, 204, 0.5) !important;
+}
+.infoBox_blue {
+  background: rgb(204, 217, 255, 0.5) !important ;
+}
+.infoBox_green {
+  background: rgb(193, 240, 193, 0.5) !important;
+}
+.infoBox_grey {
+  background: rgb(204, 204, 204, 0.5) !important;
+}

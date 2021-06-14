@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "covidindia2020"
+    "default": "covidindia2020",
+    "production": "covidindia-7777"
   }
 }

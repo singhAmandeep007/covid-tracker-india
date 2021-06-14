@@ -6,7 +6,7 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 /* Enable theme(s) */
 am4core.useTheme(am4themes_animated);
 
-function DonutChart({selectedStateInfo}){
+function DonutChart({selectedStateInfo,colorPalette}){
 
     const donutChart = useRef(null);
 
@@ -17,22 +17,22 @@ function DonutChart({selectedStateInfo}){
         {
           type: "Confirmed",
           count: selectedStateInfo.confirmed,
-          "color": am4core.color("#db2828")
+          "color": am4core.color(`${colorPalette.confirmed.color}`)
         },
         {
           type: "Active",
           count: selectedStateInfo.active,
-          "color": am4core.color("#2185d0")
+          "color": am4core.color(`${colorPalette.active.color}`)
         },
         {
           type: "Recovered",
           count: selectedStateInfo.recovered,
-          "color": am4core.color("#21ba45")
+          "color": am4core.color(`${colorPalette.recovered.color}`)
         },
         {
           type: "Deaths",
           count: selectedStateInfo.deaths,
-          "color": am4core.color("#767676")
+          "color": am4core.color(`${colorPalette.deaths.color}`)
         }
       ];
       x.data = stateData;
@@ -50,7 +50,7 @@ function DonutChart({selectedStateInfo}){
       let centerLabel = pieSeries.createChild(am4core.Label);
       centerLabel.text = `${selectedStateInfo.state}`;
       centerLabel.truncate=true;
-      centerLabel.maxWidth=150
+      centerLabel.maxWidth=130
       centerLabel.wrap=true;
       centerLabel.fontSize = 20;
       centerLabel.horizontalCenter = "middle";
@@ -61,12 +61,21 @@ function DonutChart({selectedStateInfo}){
       pieSeries.slices.template.states.getKey("hover").properties.scale = 1;
       pieSeries.slices.template.states.getKey("hover").properties.fillOpacity = 0.5;
       
-      // Add a legend
+      // legend
       x.legend = new am4charts.Legend();
-      x.legend.align = "right";
-      x.legend.position = "right";
-      x.legend.valueLabels.template.align = "left";
+      x.legend.fontSize = 12;
+      x.legend.valueLabels.template.fontSize = 12
+      x.legend.valueLabels.template.align = "right";
       x.legend.valueLabels.template.textAlign = "start"; 
+      // Marker
+      x.legend.useDefaultMarker = true;
+      let marker = x.legend.markers.template.children.getIndex(0);
+      marker.cornerRadius(12, 12, 12, 12);
+      marker.stroke = am4core.color("#fff");
+      marker.valign = "middle";
+      marker.horizontalAlign = "center"
+      marker.height = 12;
+      marker.width = 12;
 
       // Updating
       x.dataSource.updateCurrentData = true;
@@ -75,12 +84,12 @@ function DonutChart({selectedStateInfo}){
       return () => {
         x.dispose();
       };
-    },[selectedStateInfo])
+    },[selectedStateInfo,colorPalette])
     
     return (
       <div
         id="donutChartDiv"
-        style={{ height: "300px" }}
+        style={{ height: "430px" }}
       />
     );
 }

@@ -8,7 +8,7 @@ import {stringToDate} from './../../utils/util';
 /* Enable theme(s) */
 am4core.useTheme(am4themes_animated);
 
-function LineChart({casesInfo}) {
+function LineChart({casesInfo,colorPalette}) {
 
   const casesChart = useRef(null);
 
@@ -54,8 +54,8 @@ function LineChart({casesInfo}) {
     seriesConfirmed.name = "Confirmed";
     seriesConfirmed.dataFields.dateX = "date";
     seriesConfirmed.dataFields.valueY = "dailyconfirmed";
-    seriesConfirmed.stroke = "#db2828";
-    seriesConfirmed.fill = "#db2828";
+    seriesConfirmed.stroke = `${colorPalette.confirmed.color}`;
+    seriesConfirmed.fill = `${colorPalette.confirmed.color}`;
 
     seriesConfirmed.tooltipHTML = renderToStaticMarkup(
       <Tooltip name="Confirmed" value="{valueY.value}" />
@@ -70,8 +70,8 @@ function LineChart({casesInfo}) {
     seriesRecovered.name = "Recovered";
     seriesRecovered.dataFields.dateX = "date";
     seriesRecovered.dataFields.valueY = "dailyrecovered";
-    seriesRecovered.stroke = "#21ba45";
-    seriesRecovered.fill = "#21ba45";
+    seriesRecovered.stroke = `${colorPalette.recovered.color}`;
+    seriesRecovered.fill = `${colorPalette.recovered.color}`;
 
     seriesRecovered.tooltipHTML = renderToStaticMarkup(
       <Tooltip name="Recovered" value="{valueY.value}" />
@@ -86,8 +86,8 @@ function LineChart({casesInfo}) {
     seriesDeceased.name = "Deceased";
     seriesDeceased.dataFields.dateX = "date";
     seriesDeceased.dataFields.valueY = "dailydeceased";
-    seriesDeceased.stroke = "#767676";
-    seriesDeceased.fill = "#767676";
+    seriesDeceased.stroke = `${colorPalette.deaths.color}`;
+    seriesDeceased.fill = `${colorPalette.deaths.color}`;
     seriesDeceased.strokeWidth = 3;
     seriesDeceased.fillOpacity = 0.3;
 
@@ -113,7 +113,7 @@ function LineChart({casesInfo}) {
         true // this makes zoom instant
       );
     });
-    // Lengends
+    // Legends
     x.legend = new am4charts.Legend();
 
     casesChart.current = x;
@@ -121,7 +121,7 @@ function LineChart({casesInfo}) {
     return () => {
       x.dispose();
     };
-  },[]);
+  },[casesInfo,colorPalette]);
 
   return (
   

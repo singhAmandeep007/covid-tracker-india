@@ -118,7 +118,7 @@ function TestedChart({testSeriesInfo}) {
     return () => {
       x.dispose();
     };
-  },[]);
+  },[testSeriesInfo]);
 
   return (
   

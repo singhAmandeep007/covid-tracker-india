@@ -1,56 +1,119 @@
-import React, { useEffect } from 'react';
-import './Table.css';
+import _ from 'lodash'
+import React from 'react';
+import { Table } from 'semantic-ui-react';
+import './Table';
 
-export default function Table({ info, handleHover }) {
-
-  //console.log(info)
-  useEffect(() => { }, [info]);
-  return (
-    <div>
-      <div className="card mb-3 shadow bg-white rounded">
-        <div className="card-body">
-          <div className="table-responsive-xl table-wrapper-scroll-y my-custom-scrollbar">
-            <table id="dtBasicExample" className="table table-bordered table-hover" >
-              <thead className="thead-dark">
-                <tr>
-                  <th scope="col">State/UT</th>
-                  <th scope="col">Confirmed</th>
-                  <th scope="col">Active</th>
-                  <th scope="col">Recovered</th>
-                  <th scope="col">Deceased</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  key={"aja2"}
-                >
-                  <th scope="row">Total India</th>
-                  <td>{(info[0].confirmed)}</td>
-                  <td>{(info[0].active)}</td>
-                  <td>{(info[0].recovered)}</td>
-                  <td>{(info[0].deaths)}</td>
-                </tr>
-                {info && info.slice(1).map((d, index) => {
-                  return (
-                    <tr
-                      key={index}
-                      onMouseOver={() => handleHover(d.statecode)}
-                      onMouseOut={() => handleHover('TT')}
-                    >
-                      <th scope="row">{d.state}</th>
-                      <td>{(d.confirmed)}</td>
-                      <td>{(d.active)}</td>
-                      <td>{(d.recovered)}</td>
-                      <td>{(d.deaths)}</td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-
+function tableReducer(state, action) {
+  switch (action.type) {
+    case 'CHANGE_SORT':
+      if (state.column === action.column) {
+        return {
+          ...state,
+          data: state.data.slice().reverse(),
+          direction:
+            state.direction === 'ascending' ? 'descending' : 'ascending',
+        }
+      }
+      return {
+        column: action.column,
+        data: _.sortBy(state.data, [action.column]),
+        direction: 'ascending',
+      }
+    default:
+      throw new Error()
+  }
 }
+
+function StatewiseTable({ statewiseInfo, handleHover }) {
+
+  const tableData = statewiseInfo.filter((d)=>{
+    if(d.state === 'Total' || d.state === 'State Unassigned'){
+      return null;
+    }
+    return d;
+  }).map(d=>{
+    return{
+      active:parseInt(d.active),
+      confirmed:parseInt(d.confirmed),
+      deaths:parseInt(d.deaths),
+      recovered:parseInt(d.recovered),
+      state:d.state,
+      statecode:d.statecode
+    }
+  })
+  
+  const [state, dispatch] = React.useReducer(tableReducer, {
+    column: null,
+    data: tableData,
+    direction: null,
+  })
+  const { column, data, direction } = state;
+  
+  return (
+
+    <Table sortable celled selectable fixed singleLine unstackable compact>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell
+            sorted={column === 'state' ? direction : null}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'state' })}
+          >
+            State/UT
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            sorted={column === 'confirmed' ? direction : null}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'confirmed' })}
+          >
+            Confirmed
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            sorted={column === 'active' ? direction : null}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'active' })}
+          >
+            Active
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            sorted={column === 'recovered' ? direction : null}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'recovered' })}
+          >
+            Recovered
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            sorted={column === 'deaths' ? direction : null}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'deaths' })}
+          >
+            Deaths
+          </Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        <Table.Row key={"total"} disabled>
+          <Table.Cell>
+            {statewiseInfo[0].state}
+          </Table.Cell>
+          <Table.Cell>{statewiseInfo[0].confirmed}</Table.Cell>
+          <Table.Cell>{statewiseInfo[0].active}</Table.Cell>
+          <Table.Cell>{statewiseInfo[0].recovered}</Table.Cell>
+          <Table.Cell>{statewiseInfo[0].deaths}</Table.Cell>
+        </Table.Row>
+        {data.map(({state,statecode,active,confirmed,recovered,deaths}) => {
+            return (<Table.Row 
+              key={statecode} 
+              onMouseOver={() => handleHover(statecode)}
+              onMouseOut={() => handleHover('TT')}
+            >
+              <Table.Cell>{state}</Table.Cell>
+              <Table.Cell>{confirmed}</Table.Cell>
+              <Table.Cell>{active}</Table.Cell>
+              <Table.Cell>{recovered}</Table.Cell>
+              <Table.Cell>{deaths}</Table.Cell>
+            </Table.Row>)
+          }
+        )}
+      </Table.Body>
+    </Table>
+  )
+}
+
+export default StatewiseTable;
+

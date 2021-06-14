@@ -1,12 +1,20 @@
 export function stringToDate(_date,_format,_delimiter){
-  var formatLowerCase=_format.toLowerCase();
-  var formatItems=formatLowerCase.split(_delimiter);
-  var dateItems=_date.split(_delimiter);
-  var monthIndex=formatItems.indexOf("mm");
-  var dayIndex=formatItems.indexOf("dd");
-  var yearIndex=formatItems.indexOf("yyyy");
-  var month=parseInt(dateItems[monthIndex]);
+  let formatLowerCase=_format.toLowerCase();
+  let formatItems=formatLowerCase.split(_delimiter);
+  let dateItems=_date.split(_delimiter);
+  let monthIndex=formatItems.indexOf("mm");
+  let dayIndex=formatItems.indexOf("dd");
+  let yearIndex=formatItems.indexOf("yyyy");
+  let month=parseInt(dateItems[monthIndex]);
   month-=1;
-  var formatedDate = new Date(dateItems[yearIndex],month,dateItems[dayIndex]);
+  let formatedDate = new Date(dateItems[yearIndex],month,dateItems[dayIndex]);
   return formatedDate;
+}
+
+export function numbersToPercentage(arr){
+  let sum = arr.map(v => parseInt(v)).reduce((a, b) => a + b, 0);
+  let percentArr = arr.map(v => {
+      return (v*100 / sum).toFixed(1);
+  });
+  return percentArr;
 }
