@@ -121,11 +121,15 @@ function TestedChart({testSeriesInfo}) {
   },[testSeriesInfo]);
 
   return (
-  
+  <>
+    <span className="ui red ribbon label">Tested Timeline Series</span>
+    <div className="ui horizontal divider">
+    Tested Timeline Series
+    </div>
     <div id="testedChartDiv" 
       style={{ width: "100%", height: "500px" }}>
     </div>			
-
+</>
   )
 }
 

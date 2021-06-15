@@ -2,6 +2,7 @@ import React,{useRef,useLayoutEffect} from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import {Popup,Icon} from 'semantic-ui-react';
 
 /* Enable theme(s) */
 am4core.useTheme(am4themes_animated);
@@ -87,10 +88,35 @@ function DonutChart({selectedStateInfo,colorPalette}){
     },[selectedStateInfo,colorPalette])
     
     return (
+      <>
+      <div className="ui red ribbon label">
+        Donut Chart &nbsp;&nbsp;
+        <Popup
+            content={
+              <>
+                <b>Hover/Click</b> a slice to see details.<br/> <b>Toggle</b> a field by clicking it's legend.
+              </>
+            }
+            on={['hover', 'click']}
+            popper={{ id: 'donut-popper-container', style: { zIndex: 2000 } }}
+            trigger={<Icon name='info circle' />}
+            hideOnScroll
+          />
+      </div>
+      <div className="ui top right attached label">
+        Last Updated: <div className="detail">{selectedStateInfo.lastupdatedtime}</div>
+      </div>
+
+      <div className="ui horizontal divider">
+        {selectedStateInfo.state}
+      </div>
+    
       <div
         id="donutChartDiv"
         style={{ height: "430px" }}
-      />
+      />     
+      </>
+    
     );
 }
 

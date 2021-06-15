@@ -7,7 +7,7 @@ export default function InfoBox({ title, total, color }) {
 
   return (
 
-    <Card color={color}>
+    <Card color={color} fluid>
       <Card.Content className={styles[`infoBox_${color}`]}>
 
       <Statistic size="mini" color={color} style={{width:"100%"}} >

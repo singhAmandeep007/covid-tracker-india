@@ -13,6 +13,15 @@ function ProgressBars({selectedStateInfo ,colorPalette}) {
     )
   return (
     <React.Fragment>
+      <span className="ui red ribbon label">Progress Bars</span>
+      <div className="ui top right attached label">
+        Last Updated: <div className="detail">{selectedStateInfo.lastupdatedtime}</div>
+      </div>
+
+      <div className="ui horizontal divider">
+        {selectedStateInfo.state}
+      </div>
+
       <Progress  percent={percentArr[0]} active progress color={colorPalette.confirmed.name} >
         Confirmed
       </Progress>

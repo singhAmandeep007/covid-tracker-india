@@ -124,10 +124,15 @@ function LineChart({casesInfo,colorPalette}) {
   },[casesInfo,colorPalette]);
 
   return (
-  
-    <div id="casesChartDiv" 
+  <>
+    <span className="ui red ribbon label">Cases Timeline Series</span>
+    <div className="ui horizontal divider">
+    Cases Timeline Series
+    </div>
+    <div id="casesChartDiv"
       style={{ width: "100%", height: "500px" }}>
-    </div>			
+    </div>		
+  </>
 
   )
 }

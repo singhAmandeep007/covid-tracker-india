@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import LazyLoad from 'react-lazyload';
 import {
   Grid,
   Segment,
-  Label,
-  Divider
+  Divider,
 } from 'semantic-ui-react'
+
 import {getCovidData} from './services/covidData.api';
 
 import LineChart from './components/Charts/LineChart';
@@ -14,17 +15,20 @@ import StatewiseTable from './components/Table/Table';
 import InfoBox from './components/InfoBox/InfoBox';
 import ProgressBars from './components/ProgressBars/ProgressBars'
 import Map from './components/Map/Map';
-import Loader from './Loader';
+import PlaceholderComment from './components/PlaceholderComment/PlaceholderComment';
+import PlaceholderImage from './components/PlaceholderImage/PlaceholderImage';
 
 import covidLogo from './covid-19.svg';
 import 'semantic-ui-css/semantic.min.css';
 import './css/App.css';
 
+
+
 function App() {
-  const [statewiseInfo, setStatewiseInfo] = useState([]);
-  const [selectedStateInfo, setSelectedStateInfo] = useState({});
-  const [casesInfo, setCasesInfo] = useState([]);
-  const [testSeriesInfo,setTestSeriesInfo] = useState([])
+  const [statewiseInfo, setStatewiseInfo] = useState(null);
+  const [selectedStateInfo, setSelectedStateInfo] = useState(null);
+  const [casesInfo, setCasesInfo] = useState(null);
+  const [testSeriesInfo,setTestSeriesInfo] = useState(null)
   const [colorPalette,setColorPalette]=useState({
     confirmed:{
       type:"confirmed",
@@ -95,14 +99,6 @@ function App() {
     },200)
   }
 
-  if (loading) {
-    return (
-      <Loader></Loader>
-    )
-  }
-
-  else {
-
     return (
       <div>
 
@@ -124,11 +120,6 @@ function App() {
                   <i className="attention icon"></i>
                   Data Source
                 </a>
-
-                <span style={{marginLeft:"15px"}}>
-                  <i className="sync icon"></i>
-                  Last Updated: {selectedStateInfo.lastupdatedtime}
-                </span> 
               </p>  
           </div>
 
@@ -138,45 +129,52 @@ function App() {
         <Grid stackable verticalAlign="top" padded>
           <Grid.Row centered columns={2}  >
             <Grid.Column width={7} >
-              <Grid.Row >
-                <Segment raised style={{margin:"1em 0em"}}>
-                  <Label color='red' ribbon>
-                    Donut Chart
-                  </Label>
-                  <Divider horizontal>{selectedStateInfo.state}</Divider>
-                  <DonutChart
-                    selectedStateInfo={selectedStateInfo}
-                    colorPalette={colorPalette}
-                  ></DonutChart>
+              <Grid.Row style={{margin:"1em 0em"}}>
+                <Segment raised >
+
+                  {loading ? <PlaceholderImage /> : 
+                  <LazyLoad offset={-100} once placeholder={<PlaceholderImage />}>
+                    <DonutChart
+                      selectedStateInfo={selectedStateInfo}
+                      colorPalette={colorPalette}
+                    ></DonutChart></LazyLoad>}
+
                 </Segment>
               </Grid.Row>
-              <Grid.Row >
-              <Segment raised style={{margin:"1em 0em"}}>
-                  <Label color='red' ribbon>
-                    Table
-                  </Label>
-                  <Divider horizontal>{selectedStateInfo.state}</Divider>
-                  <div style={{ overflow: 'auto',height:'700px' ,margin:'10px 0px'}}>
-                    <StatewiseTable
-                      statewiseInfo={statewiseInfo}
-                      handleHover={handleHover}
-                    ></StatewiseTable>
-                  </div>
-                  </Segment>
+              <Grid.Row style={{margin:"1em 0em"}}>
+                <Segment raised >
+
+                  {loading ? <PlaceholderImage /> : 
+                    <LazyLoad offset={-50} once placeholder={<PlaceholderImage />}>
+                      <StatewiseTable
+                        selectedStateInfo={selectedStateInfo}
+                        statewiseInfo={statewiseInfo}
+                        handleHover={handleHover}
+                      ></StatewiseTable>
+                    </LazyLoad>}
+                  
+                </Segment>
             
               </Grid.Row>
-              
             </Grid.Column>
             <Grid.Column  width={7}>
-              <Grid.Row>
+              <Grid.Row >
                 <Segment raised style={{margin:"1em 0em"}}>
-                    <Label  color='red' ribbon>
-                      Statistics
-                    </Label>
-                    <Divider horizontal>{selectedStateInfo.state}</Divider>
+
+                    {loading ? <PlaceholderImage /> : <>
+                      <span className="ui red ribbon label">Statistics</span>
+                      <div className="ui top right attached label">
+                        Last Updated: <div className="detail">{selectedStateInfo.lastupdatedtime}</div>
+                      </div>
+
+                      <div className="ui horizontal divider">
+                        {selectedStateInfo.state}
+                      </div>
+                    
                     <Grid columns={4} stackable padded="vertically">
-                      <Grid.Row verticalAlign="middle">
+                      <Grid.Row centered columns={4} verticalAlign="middle">
                         <Grid.Column>
+                      
                         <InfoBox
                           title={'CONFIRMED'}
                           total={selectedStateInfo.confirmed}
@@ -184,6 +182,7 @@ function App() {
                         ></InfoBox>
                         </Grid.Column>
                         <Grid.Column>
+                      
                         <InfoBox
                           title={'ACTIVE'}
                           total={selectedStateInfo.active}
@@ -191,6 +190,7 @@ function App() {
                         ></InfoBox>
                         </Grid.Column>
                         <Grid.Column>
+                      
                         <InfoBox
                           title={'RECOVERED'}
                           total={selectedStateInfo.recovered}
@@ -199,6 +199,7 @@ function App() {
                       
                         </Grid.Column>
                         <Grid.Column>
+                      
                         <InfoBox
                           title={'DECEASED'}
                           total={selectedStateInfo.deaths}
@@ -208,30 +209,30 @@ function App() {
 
                       </Grid.Row>
                     </Grid>
+                    </>}
                 </Segment>
                 <Segment raised style={{margin:"1em 0em"}}>
-                  <Label  color='red' ribbon>
-                    Progress Bars
-                  </Label>
-                  <Divider horizontal>{selectedStateInfo.state}</Divider>
+          
+                  {loading ? <PlaceholderComment num={4}/> :
                   <ProgressBars
                     selectedStateInfo={selectedStateInfo}
                     colorPalette={colorPalette}
-                  />
+                  />}
                 </Segment>
               
               </Grid.Row>
-              <Grid.Row>
+              <Grid.Row style={{margin:"1em 0em"}}>
 
-                <Segment raised style={{margin:"1em 0em"}}>
-                  <Label color='red' ribbon>
-                      Map
-                  </Label>
-                  <Map
-                    statewiseInfo={statewiseInfo}
-                    handleHover={handleHover}
-                    colorPalette={colorPalette}
-                  ></Map>
+                <Segment raised >
+                  
+                  {loading ? <PlaceholderImage/> :
+                  <LazyLoad offset={-100} once placeholder={<PlaceholderImage />}>
+                    <Map
+                      statewiseInfo={statewiseInfo}
+                      handleHover={handleHover}
+                      colorPalette={colorPalette}
+                    ></Map>
+                  </LazyLoad>}
                 </Segment>
               
               </Grid.Row>
@@ -241,28 +242,26 @@ function App() {
 
         <Grid stackable verticalAlign='top'>
           <Grid.Row centered columns={2} >
-            <Grid.Column width={7}>
-              <Segment raised style={{margin:"1em 0em"}}>
-                <Label color='red' ribbon>
-                  Tested Timeline Series
-                </Label>
-                <Divider horizontal>Tested Timeline Series</Divider>
-                <TestedChart
-                  testSeriesInfo={testSeriesInfo}
-                  />
+            <Grid.Column width={7} style={{margin:"1em 0em"}}>
+              <Segment raised >
+                {loading ? <PlaceholderImage /> : 
+                <LazyLoad offset={500}  once placeholder={<PlaceholderImage />}>
+                  <TestedChart
+                    testSeriesInfo={testSeriesInfo}
+                    />
+                </LazyLoad>}
               </Segment>
             
             </Grid.Column>
-            <Grid.Column width={7}>
-              <Segment raised style={{margin:"1em 0em"}}>
-                  <Label color='red' ribbon>
-                  Cases Timeline Series
-                  </Label>
-                  <Divider horizontal>Cases Timeline Series</Divider>
-                <LineChart
-                  casesInfo={casesInfo}
-                  colorPalette={colorPalette}
-                ></LineChart>
+            <Grid.Column width={7} style={{margin:"1em 0em"}}>
+              <Segment raised >
+                  {loading ? <PlaceholderImage /> : 
+                  <LazyLoad offset={500} once placeholder={<PlaceholderImage />}>
+                    <LineChart
+                      casesInfo={casesInfo}
+                      colorPalette={colorPalette}
+                    ></LineChart>
+                  </LazyLoad>}
               </Segment>
             </Grid.Column>
           </Grid.Row>
@@ -270,7 +269,10 @@ function App() {
         </Grid>
       
         <div style={{margin:"0px 3em"}}>
-        <Divider horizontal>Covid-19 Tracker</Divider>
+          <Divider horizontal>
+          <img className="ui tiny centered image" src={covidLogo} alt="icon" style={{width:"40px",marginBottom:"5px"}} />
+            Covid-19 Tracker
+          </Divider>
           <div role="list" className="ui horizontal right floated list">
             <a role="listitem" className="item" target="blank" href="https://github.com/amandeepmicro/Covid-19-Tracker_India">
               GitHub
@@ -289,7 +291,6 @@ function App() {
       </div>
     )
 
-  }
 }
 
 export default App;

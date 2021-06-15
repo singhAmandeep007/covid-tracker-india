@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React from 'react';
-import { Table } from 'semantic-ui-react';
-import './Table';
+import { Table,Popup,Icon } from 'semantic-ui-react';
 
 function tableReducer(state, action) {
   switch (action.type) {
@@ -24,7 +23,7 @@ function tableReducer(state, action) {
   }
 }
 
-function StatewiseTable({ statewiseInfo, handleHover }) {
+function StatewiseTable({ statewiseInfo,selectedStateInfo, handleHover }) {
 
   const tableData = statewiseInfo.filter((d)=>{
     if(d.state === 'Total' || d.state === 'State Unassigned'){
@@ -50,7 +49,32 @@ function StatewiseTable({ statewiseInfo, handleHover }) {
   const { column, data, direction } = state;
   
   return (
+    <>
+    <div className="ui red ribbon label">
+      Table &nbsp;&nbsp;
+    
+      <Popup
+          content={
+            <>
+              <b>Hover/Click</b> a state to interact with charts.<br/> <b>Sort</b> by clicking on Table Heading.
+            </>
+          }
+          on={['hover', 'click']}
+          popper={{ id: 'table-popper-container', style: { zIndex: 2000 } }}
+          trigger={<Icon name='info circle' />}
+          hideOnScroll
+        />
+      </div>
+  
+    <div className="ui top right attached label">
+      Last Updated: <div className="detail">{selectedStateInfo.lastupdatedtime}</div>
+    </div>
 
+    <div className="ui horizontal divider">
+      {selectedStateInfo.state}
+    </div>
+  
+    <div style={{ overflow: 'auto',height:'700px' ,margin:'10px 0px'}}>
     <Table sortable celled selectable fixed singleLine unstackable compact>
       <Table.Header>
         <Table.Row>
@@ -112,6 +136,8 @@ function StatewiseTable({ statewiseInfo, handleHover }) {
         )}
       </Table.Body>
     </Table>
+    </div>
+    </>
   )
 }
 
