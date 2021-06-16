@@ -53,7 +53,7 @@
 
 <h1 align="center">Performance</h1>
 <p align="center">
-  <img width="750" src="https://res.cloudinary.com/dryiuvv1l/image/upload/v1602563893/covid-india/Annotation_2020-10-13_100620_ynz9si.png">
+  <img width="750" src="https://res.cloudinary.com/dryiuvv1l/image/upload/v1623861187/covid-india/covid_yx3x79.jpg">
 </p>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
