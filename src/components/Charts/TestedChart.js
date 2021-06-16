@@ -40,6 +40,7 @@ function TestedChart({testSeriesInfo}) {
     let valueAxis = x.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
     valueAxis.renderer.minWidth = 35;
+    valueAxis.numberFormatter.numberFormat = "#,###.a"; 
 
     // Gradient
     let fillModifier = new am4core.LinearGradientModifier();

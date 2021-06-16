@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import LazyLoad from 'react-lazyload';
 import {
   Grid,
   Segment,
   Divider,
 } from 'semantic-ui-react'
+
+import LazyLoad from './hooks/LazyLoad';
 
 import {getCovidData} from './services/covidData.api';
 
@@ -133,11 +134,11 @@ function App() {
                 <Segment raised >
 
                   {loading ? <PlaceholderImage /> : 
-                  <LazyLoad offset={-100} once placeholder={<PlaceholderImage />}>
                     <DonutChart
                       selectedStateInfo={selectedStateInfo}
                       colorPalette={colorPalette}
-                    ></DonutChart></LazyLoad>}
+                    ></DonutChart>
+                  }
 
                 </Segment>
               </Grid.Row>
@@ -145,7 +146,7 @@ function App() {
                 <Segment raised >
 
                   {loading ? <PlaceholderImage /> : 
-                    <LazyLoad offset={-50} once placeholder={<PlaceholderImage />}>
+                    <LazyLoad >
                       <StatewiseTable
                         selectedStateInfo={selectedStateInfo}
                         statewiseInfo={statewiseInfo}
@@ -161,7 +162,7 @@ function App() {
               <Grid.Row >
                 <Segment raised style={{margin:"1em 0em"}}>
 
-                    {loading ? <PlaceholderImage /> : <>
+                    {loading ? <PlaceholderImage /> :  <LazyLoad >
                       <span className="ui red ribbon label">Statistics</span>
                       <div className="ui top right attached label">
                         Last Updated: <div className="detail">{selectedStateInfo.lastupdatedtime}</div>
@@ -209,15 +210,16 @@ function App() {
 
                       </Grid.Row>
                     </Grid>
-                    </>}
+                    </LazyLoad>}
                 </Segment>
                 <Segment raised style={{margin:"1em 0em"}}>
           
                   {loading ? <PlaceholderComment num={4}/> :
+                  <LazyLoad>
                   <ProgressBars
                     selectedStateInfo={selectedStateInfo}
                     colorPalette={colorPalette}
-                  />}
+                  /></LazyLoad>}
                 </Segment>
               
               </Grid.Row>
@@ -226,7 +228,7 @@ function App() {
                 <Segment raised >
                   
                   {loading ? <PlaceholderImage/> :
-                  <LazyLoad offset={-100} once placeholder={<PlaceholderImage />}>
+                  <LazyLoad>
                     <Map
                       statewiseInfo={statewiseInfo}
                       handleHover={handleHover}
@@ -245,7 +247,7 @@ function App() {
             <Grid.Column width={7} style={{margin:"1em 0em"}}>
               <Segment raised >
                 {loading ? <PlaceholderImage /> : 
-                <LazyLoad offset={500}  once placeholder={<PlaceholderImage />}>
+                <LazyLoad rootMargin={'200px'}>
                   <TestedChart
                     testSeriesInfo={testSeriesInfo}
                     />
@@ -256,12 +258,13 @@ function App() {
             <Grid.Column width={7} style={{margin:"1em 0em"}}>
               <Segment raised >
                   {loading ? <PlaceholderImage /> : 
-                  <LazyLoad offset={500} once placeholder={<PlaceholderImage />}>
+                  <LazyLoad rootMargin={'200px'}>
                     <LineChart
                       casesInfo={casesInfo}
                       colorPalette={colorPalette}
                     ></LineChart>
-                  </LazyLoad>}
+                  </LazyLoad>
+                  }
               </Segment>
             </Grid.Column>
           </Grid.Row>
