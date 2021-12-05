@@ -16,7 +16,7 @@ import {
    ProfileIconLink,
 } from './HeroElements';
 import { FaLinkedin } from 'react-icons/fa';
-import './HeroSection.scss';
+import './HeroSection.css';
 
 const HeroSection = () => {
    const [hover, setHover] = useState(false);

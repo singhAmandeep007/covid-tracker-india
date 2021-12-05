@@ -1,15 +1,28 @@
 import React from 'react';
 import CountUp from 'react-countup';
-import { Card, Statistic } from 'semantic-ui-react';
-import styles from './InfoBox.module.css';
+import { Card } from 'semantic-ui-react';
+
+import styled from 'styled-components';
+
+const StyledCard = styled(Card)`
+   border-bottom: 3px solid ${({ $color }) => $color.shadeDark || 'grey'} !important;
+
+   & > .content {
+      background-color: ${({ $color }) =>
+         $color.shadeLight || '#000'} !important;
+   }
+   & > .value {
+      color: ${({ $color }) => $color.shadeDark || '#000'} !important;
+   }
+`;
 
 export default function InfoBox({ title, total, color }) {
    return (
-      <Card color={color} fluid>
-         <Card.Content className={styles[`infoBox_${color}`]}>
-            <Statistic size="mini" color={color} style={{ width: '100%' }}>
-               <Statistic.Label>{title}</Statistic.Label>
-               <Statistic.Value>
+      <StyledCard $color={color} fluid>
+         <div class="content">
+            <div className="ui mini statistic" style={{ width: '100%' }}>
+               <div className="label">{title}</div>
+               <div className="value">
                   {isFinite(total) ? (
                      <CountUp
                         end={Number(total)}
@@ -19,9 +32,9 @@ export default function InfoBox({ title, total, color }) {
                   ) : (
                      0
                   )}
-               </Statistic.Value>
-            </Statistic>
-         </Card.Content>
-      </Card>
+               </div>
+            </div>
+         </div>
+      </StyledCard>
    );
 }

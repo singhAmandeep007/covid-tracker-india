@@ -8,7 +8,7 @@ import { stringToDate } from './../../utils/util';
 /* Enable theme(s) */
 am4core.useTheme(am4themes_animated);
 
-function LineChart({ casesInfo, colorPalette }) {
+function LineChart({ casesInfo }) {
    const casesChart = useRef(null);
 
    function Tooltip({ name, value }) {
@@ -55,8 +55,8 @@ function LineChart({ casesInfo, colorPalette }) {
       seriesConfirmed.name = 'Confirmed';
       seriesConfirmed.dataFields.dateX = 'date';
       seriesConfirmed.dataFields.valueY = 'dailyconfirmed';
-      seriesConfirmed.stroke = `${colorPalette.confirmed.color}`;
-      seriesConfirmed.fill = `${colorPalette.confirmed.color}`;
+      seriesConfirmed.stroke = `#db2828`;
+      seriesConfirmed.fill = `#db2828`;
 
       seriesConfirmed.tooltipHTML = renderToStaticMarkup(
          <Tooltip name="Confirmed" value="{valueY.value}" />
@@ -71,8 +71,8 @@ function LineChart({ casesInfo, colorPalette }) {
       seriesRecovered.name = 'Recovered';
       seriesRecovered.dataFields.dateX = 'date';
       seriesRecovered.dataFields.valueY = 'dailyrecovered';
-      seriesRecovered.stroke = `${colorPalette.recovered.color}`;
-      seriesRecovered.fill = `${colorPalette.recovered.color}`;
+      seriesRecovered.stroke = `#21ba45`;
+      seriesRecovered.fill = `#21ba45`;
 
       seriesRecovered.tooltipHTML = renderToStaticMarkup(
          <Tooltip name="Recovered" value="{valueY.value}" />
@@ -87,8 +87,8 @@ function LineChart({ casesInfo, colorPalette }) {
       seriesDeceased.name = 'Deceased';
       seriesDeceased.dataFields.dateX = 'date';
       seriesDeceased.dataFields.valueY = 'dailydeceased';
-      seriesDeceased.stroke = `${colorPalette.deaths.color}`;
-      seriesDeceased.fill = `${colorPalette.deaths.color}`;
+      seriesDeceased.stroke = `#767676`;
+      seriesDeceased.fill = `#767676`;
       seriesDeceased.strokeWidth = 3;
       seriesDeceased.fillOpacity = 0.3;
 
@@ -122,7 +122,7 @@ function LineChart({ casesInfo, colorPalette }) {
       return () => {
          x.dispose();
       };
-   }, [casesInfo, colorPalette]);
+   }, [casesInfo]);
 
    return (
       <>

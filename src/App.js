@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { schemaMarkup } from './components/SEO';
@@ -9,7 +9,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {
    return (
-      <>
+      <HelmetProvider>
          <Helmet>
             <script type="application/json">
                {JSON.stringify(schemaMarkup())}
@@ -20,7 +20,7 @@ const App = () => {
                <Routes />
             </Suspense>
          </Router>
-      </>
+      </HelmetProvider>
    );
 };
 

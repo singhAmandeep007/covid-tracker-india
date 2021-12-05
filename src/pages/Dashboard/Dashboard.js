@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Segment, Divider } from 'semantic-ui-react';
-
+import { Grid, Segment, Divider, Button, Label } from 'semantic-ui-react';
+import { FaPalette } from 'react-icons/fa';
 import LazyLoad from './../../hooks/LazyLoad';
 import { COVID_SAMPLE_DATA } from './../../services/COVID_DATA_SAMPLE';
 import { getCovidData } from './../../services/covidData.api';
@@ -17,7 +17,10 @@ import PlaceholderImage from './../../components/PlaceholderImage/PlaceholderIma
 
 import covidLogo from './../../assets/covid-19.svg';
 
+import chartTheme from './chartTheme';
+
 import './Dashboard.css';
+import { Link } from 'react-router-dom';
 
 function Dashboard() {
    const [statewiseInfo, setStatewiseInfo] = useState(null);
@@ -25,40 +28,13 @@ function Dashboard() {
    const [casesInfo, setCasesInfo] = useState(null);
    const [testSeriesInfo, setTestSeriesInfo] = useState(null);
    const [colorPalette, setColorPalette] = useState({
-      confirmed: {
-         type: 'confirmed',
-         color: '#db2828',
-         shadeLight: '#fbedec',
-         shadeDark: '#db2828',
-         name: 'red',
-      },
-      active: {
-         type: 'active',
-         color: '#2185d0',
-         shadeLight: '#ecf5fc',
-         shadeDark: '#2185d0',
-         name: 'blue',
-      },
-      recovered: {
-         type: 'recovered',
-         color: '#21ba45',
-         shadeLight: '#ecfcf1',
-         shadeDark: '#21ba45',
-         name: 'green',
-      },
-      deaths: {
-         type: 'deaths',
-         color: '#767676',
-         shadeLight: '#f4f4f4',
-         shadeDark: '#767676',
-         name: 'grey',
-      },
+      ...chartTheme['first'],
    });
    const [loading, setLoading] = useState(true);
 
    async function getInfo() {
       try {
-         const response = await getCovidData();
+         let response = await getCovidData();
          //const response = COVID_SAMPLE_DATA;
          if (!response.ok) {
             throw new Error(`Error!: Status Code: ${response.status} `);
@@ -75,11 +51,19 @@ function Dashboard() {
 
          setLoading(false);
       } catch (e) {
-         console.error(
-            'There has been a problem with your fetch operation:',
-            e
-         );
-         setLoading(true);
+         console.error('There has been a problem with your fetch operation:');
+         // NOTE: if fetch error still show some data
+         setStatewiseInfo(COVID_SAMPLE_DATA.statewise);
+
+         setSelectedStateInfo(COVID_SAMPLE_DATA.statewise[0]);
+
+         setCasesInfo(COVID_SAMPLE_DATA.cases_time_series);
+
+         setTestSeriesInfo(COVID_SAMPLE_DATA.tested);
+
+         setLoading(false);
+
+         // setLoading(true);
       }
    }
 
@@ -97,6 +81,10 @@ function Dashboard() {
             statewiseInfo.find((i) => i.statecode === statecode)
          );
       }, 200);
+   };
+
+   const changeTheme = (themeName) => {
+      setColorPalette(chartTheme[themeName]);
    };
 
    return (
@@ -130,7 +118,40 @@ function Dashboard() {
                      Data Source
                   </a>
                </p>
+
+               <Button animated primary as={Link} to="/">
+                  <Button.Content visible>Home</Button.Content>
+                  <Button.Content hidden>
+                     <i className="arrow circle left icon"></i>
+                  </Button.Content>
+               </Button>
             </div>
+
+            <Label.Group
+               circular
+               style={{ cursor: 'pointer', marginTop: '2em' }}
+            >
+               <Label>
+                  {' '}
+                  <FaPalette />
+               </Label>
+
+               <Label color={'red'} onClick={() => changeTheme('first')}>
+                  1
+               </Label>
+               <Label color={'blue'} onClick={() => changeTheme('second')}>
+                  2
+               </Label>
+               <Label color={'olive'} onClick={() => changeTheme('third')}>
+                  3
+               </Label>
+               <Label color={'pink'} onClick={() => changeTheme('fourth')}>
+                  4
+               </Label>
+               <Label color={'yellow'} onClick={() => changeTheme('fifth')}>
+                  5
+               </Label>
+            </Label.Group>
          </div>
 
          <Grid stackable verticalAlign="top" padded>
@@ -158,6 +179,7 @@ function Dashboard() {
                                  selectedStateInfo={selectedStateInfo}
                                  statewiseInfo={statewiseInfo}
                                  handleHover={handleHover}
+                                 colorPalette={colorPalette}
                               ></StatewiseTable>
                            </LazyLoad>
                         )}
@@ -195,28 +217,26 @@ function Dashboard() {
                                        <InfoBox
                                           title={'CONFIRMED'}
                                           total={selectedStateInfo.confirmed}
-                                          color={colorPalette.confirmed.name}
+                                          color={colorPalette.confirmed}
                                        ></InfoBox>
-                                    </Grid.Column>
-                                    <Grid.Column width={8}>
+
                                        <InfoBox
                                           title={'ACTIVE'}
                                           total={selectedStateInfo.active}
-                                          color={colorPalette.active.name}
+                                          color={colorPalette.active}
                                        ></InfoBox>
                                     </Grid.Column>
                                     <Grid.Column width={8}>
                                        <InfoBox
                                           title={'RECOVERED'}
                                           total={selectedStateInfo.recovered}
-                                          color={colorPalette.recovered.name}
+                                          color={colorPalette.recovered}
                                        ></InfoBox>
-                                    </Grid.Column>
-                                    <Grid.Column width={8}>
+
                                        <InfoBox
                                           title={'DECEASED'}
                                           total={selectedStateInfo.deaths}
-                                          color={colorPalette.deaths.name}
+                                          color={colorPalette.deaths}
                                        ></InfoBox>
                                     </Grid.Column>
                                  </Grid.Row>
@@ -258,6 +278,9 @@ function Dashboard() {
 
          <Grid stackable verticalAlign="top">
             <Grid.Row centered columns={2}>
+               <Divider horizontal style={{ margin: '0px 5em' }}>
+                  <h3>Timeline Series</h3>
+               </Divider>
                <Grid.Column width={7} style={{ margin: '1em 0em' }}>
                   <Segment raised>
                      {loading ? (
@@ -275,10 +298,7 @@ function Dashboard() {
                         <PlaceholderImage />
                      ) : (
                         <LazyLoad rootMargin={'200px'}>
-                           <LineChart
-                              casesInfo={casesInfo}
-                              colorPalette={colorPalette}
-                           ></LineChart>
+                           <LineChart casesInfo={casesInfo}></LineChart>
                         </LazyLoad>
                      )}
                   </Segment>
