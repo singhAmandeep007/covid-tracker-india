@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 TODO
+notes.js
 
 # testing
 /coverage
@@ -27,3 +28,4 @@ TODO
 .firebase/hosting.YnVpbGQ.cache
 .firebase/hosting.YnVpbGQ.cache
 package-lock.json
+TODO

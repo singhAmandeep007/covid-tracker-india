@@ -1,3 +1,3 @@
-export function getCovidData(){
-  return fetch('https://api.covid19india.org/data.json');
+export function getCovidData() {
+   return fetch('https://data.covid19india.org/data.json');
 }

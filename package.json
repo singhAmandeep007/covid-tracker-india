@@ -1,5 +1,5 @@
 {
-  "name": "covidindiattracker",
+  "name": "covid-tracker",
   "version": "0.1.0",
   "author": "Amandeep",
   "license": "MIT",
@@ -11,13 +11,21 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "lodash": "^4.17.21",
+    "node-sass": "^6.0.1",
     "react": "^16.13.1",
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.3.1",
     "react-intersection-observer": "^8.32.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
+    "react-scroll": "^1.8.4",
+    "react-transition-group": "^4.4.2",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.3"
+    "semantic-ui-react": "^2.0.3",
+    "styled-components": "^5.3.3",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
