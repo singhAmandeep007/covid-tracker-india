@@ -15,8 +15,6 @@ import Sidebar from '../../components/Sidebar';
 import FaqSection from '../../components/FaqSection';
 import Footer from '../../components/Footer';
 
-import LazyLoad from './../../hooks/LazyLoad';
-
 import { GlobalStyle } from './GlobalStyles';
 
 import breakPoints from './Breakpoints';
@@ -39,32 +37,22 @@ function Home() {
             <main style={{ background: 'var(--color-dark)' }}>
                <Sidebar isOpen={isOpen} toggle={toggle} />
                <Navbar toggle={toggle} />
-               <LazyLoad rootMargin={'100px'}>
-                  <HeroSection />
-               </LazyLoad>
-               <LazyLoad rootMargin={'-100px'} delay={250}>
-                  <OverviewSection />
-               </LazyLoad>
 
-               <LazyLoad rootMargin={'100px'}>
-                  <InfoSection {...homeObjOne} />
-               </LazyLoad>
-               <LazyLoad rootMargin={'100px'}>
-                  <InfoSection {...homeObjTwo} />
-               </LazyLoad>
-               <LazyLoad rootMargin={'100px'}>
-                  <InfoSection {...homeObjThree} />
-               </LazyLoad>
-               <LazyLoad rootMargin={'100px'}>
-                  <InfoSection {...homeObjFour} />
-               </LazyLoad>
+               <HeroSection />
 
-               <LazyLoad rootMargin={'100px'}>
-                  <FaqSection />
-               </LazyLoad>
-               <LazyLoad rootMargin={'100px'}>
-                  <Footer />
-               </LazyLoad>
+               <OverviewSection />
+
+               <InfoSection {...homeObjOne} />
+
+               <InfoSection {...homeObjTwo} />
+
+               <InfoSection {...homeObjThree} />
+
+               <InfoSection {...homeObjFour} />
+
+               <FaqSection />
+
+               <Footer />
             </main>
          </ThemeProvider>
       </>

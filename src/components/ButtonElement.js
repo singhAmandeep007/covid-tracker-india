@@ -23,7 +23,8 @@ export const DynamicButton = styled(({ component, ...props }) =>
 
    box-shadow: 8px 8px 0px ${({ $shadow }) => $shadow || '#000'};
 
-   &:hover {
+   &:hover,
+   &:focus {
       color: ${({ $primary }) =>
          $primary ? 'var(--color-primary)' : 'var(--color-secondary-light)'};
       box-shadow: inset 0px 0px 0px 1px
@@ -32,5 +33,6 @@ export const DynamicButton = styled(({ component, ...props }) =>
       transition: all 0.2s ease-in-out;
       background: ${({ $primary }) =>
          $primary ? 'var(--color-secondary-light)' : 'var(--color-primary)'};
+      transform: translate(0px, 8px);
    }
 `;

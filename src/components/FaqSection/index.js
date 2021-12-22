@@ -12,6 +12,7 @@ import {
 import { BsFillCaretRightFill, BsFillCaretDownFill } from 'react-icons/bs';
 import questions from './FaqData';
 import svg from './../../images/svg-4.svg';
+import LazyLoad from './../../hooks/LazyLoad';
 
 const Question = ({ ...props }) => {
    const [show, setShow] = useState(false);
@@ -33,20 +34,22 @@ const Question = ({ ...props }) => {
 
 const FaqSection = () => {
    return (
-      <FaqContainer id="faq">
-         <FaqWrapper>
-            <FaqCard>
-               <h2>F.A.Q to clear your doubts</h2>
-               {questions.map((value) => {
-                  return <Question key={value.id} question={value} />;
-               })}
-            </FaqCard>
+      <LazyLoad id="faq">
+         <FaqContainer>
+            <FaqWrapper>
+               <FaqCard>
+                  <h2>F.A.Q to clear your doubts</h2>
+                  {questions.map((value) => {
+                     return <Question key={value.id} question={value} />;
+                  })}
+               </FaqCard>
 
-            <ImgWrap>
-               <Img src={svg} alt="faq" />
-            </ImgWrap>
-         </FaqWrapper>
-      </FaqContainer>
+               <ImgWrap>
+                  <Img src={svg} alt="faq" />
+               </ImgWrap>
+            </FaqWrapper>
+         </FaqContainer>
+      </LazyLoad>
    );
 };
 

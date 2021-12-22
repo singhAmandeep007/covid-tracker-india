@@ -19,7 +19,7 @@ const StyledCard = styled(Card)`
 export default function InfoBox({ title, total, color }) {
    return (
       <StyledCard $color={color} fluid>
-         <div class="content">
+         <div className="content">
             <div className="ui mini statistic" style={{ width: '100%' }}>
                <div className="label">{title}</div>
                <div className="value">

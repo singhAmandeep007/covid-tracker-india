@@ -9,6 +9,7 @@ import {
    StyledOverviewCard,
 } from './OverviewElements';
 import data from './OverviewData';
+import LazyLoad from './../../hooks/LazyLoad';
 
 const updateGridOrder = (prevGridOrder, selectedCardOrder) => {
    let newGridOrder = {};
@@ -68,34 +69,36 @@ const OverviewSection = () => {
    }
 
    return (
-      <OverviewContainer id="overview">
-         <OverviewWrapper>
-            <OverviewTitle>
-               <h1>Covid </h1>
-               <p>Advice for the public: Coronavirus disease (COVID-19)</p>
-            </OverviewTitle>
-            <OverviewContent>
-               {Object.entries(gridOrder).map((order) => {
-                  return (
-                     <OverviewCardContainer
-                        $order={order[1].order}
-                        key={order[1].id}
-                        onClick={() => {
-                           handleCardClick(order[1].order);
-                        }}
-                        $animationTime={0.7}
-                        $selectedCardNum={selectedCardNum}
-                     >
-                        <StyledOverviewCard
+      <LazyLoad delay={250} id="overview">
+         <OverviewContainer>
+            <OverviewWrapper>
+               <OverviewTitle>
+                  <h1>Covid </h1>
+                  <p>Advice for the public: Coronavirus disease (COVID-19)</p>
+               </OverviewTitle>
+               <OverviewContent>
+                  {Object.entries(gridOrder).map((order) => {
+                     return (
+                        <OverviewCardContainer
                            $order={order[1].order}
-                           data={{ ...data[order[0]] }}
-                        />
-                     </OverviewCardContainer>
-                  );
-               })}
-            </OverviewContent>
-         </OverviewWrapper>
-      </OverviewContainer>
+                           key={order[1].id}
+                           onClick={() => {
+                              handleCardClick(order[1].order);
+                           }}
+                           $animationTime={0.7}
+                           $selectedCardNum={selectedCardNum}
+                        >
+                           <StyledOverviewCard
+                              $order={order[1].order}
+                              data={{ ...data[order[0]] }}
+                           />
+                        </OverviewCardContainer>
+                     );
+                  })}
+               </OverviewContent>
+            </OverviewWrapper>
+         </OverviewContainer>
+      </LazyLoad>
    );
 };
 

@@ -25,6 +25,7 @@ import {
 
 import Logo from './../Logo';
 import USEFUL_LINKS_DATA from './../../common/UsefulLinksData';
+import LazyLoad from './../../hooks/LazyLoad';
 
 const SOCIAL_LINKS_DATA = [
    {
@@ -75,56 +76,65 @@ const SOCIAL_LINKS_DATA = [
 
 const Footer = () => {
    return (
-      <FooterContainer id="footer">
-         <FooterWrap>
-            <FooterLinksContainer>
-               {USEFUL_LINKS_DATA.map(({ id, FooterTitle, links }) => {
-                  return (
-                     <FooterLinksWrapper key={id}>
-                        <FooterLinkItems>
-                           <TaperedFooterLinkTitle>
-                              {FooterTitle}
-                           </TaperedFooterLinkTitle>
-                           {links.map(({ id, href, ariaLabel, text }) => {
+      <LazyLoad id="footer">
+         <FooterContainer>
+            <FooterWrap>
+               <FooterLinksContainer>
+                  {USEFUL_LINKS_DATA.map(({ id, FooterTitle, links }) => {
+                     return (
+                        <FooterLinksWrapper key={id}>
+                           <FooterLinkItems>
+                              <TaperedFooterLinkTitle>
+                                 {FooterTitle}
+                              </TaperedFooterLinkTitle>
+                              {links.map(({ id, href, ariaLabel, text }) => {
+                                 return (
+                                    <UsefulLink
+                                       key={id}
+                                       href={href}
+                                       target="_blank"
+                                       aria-label={ariaLabel}
+                                       rel="external"
+                                    >
+                                       {text}
+                                    </UsefulLink>
+                                 );
+                              })}
+                           </FooterLinkItems>
+                        </FooterLinksWrapper>
+                     );
+                  })}
+               </FooterLinksContainer>
+               <SocialMedia>
+                  <SocialMediaWrap>
+                     <Logo />
+                     <div role="list">
+                        <span role="listitem" style={{ color: '#fff' }}>
+                           Developed by Amandeep © 2020
+                        </span>
+                     </div>
+                     <SocialIcons>
+                        {SOCIAL_LINKS_DATA.map(
+                           ({ id, href, icon, ariaLabel }) => {
                               return (
-                                 <UsefulLink
+                                 <SocialIconLink
                                     key={id}
                                     href={href}
                                     target="_blank"
                                     aria-label={ariaLabel}
                                     rel="external"
                                  >
-                                    {text}
-                                 </UsefulLink>
+                                    {icon}
+                                 </SocialIconLink>
                               );
-                           })}
-                        </FooterLinkItems>
-                     </FooterLinksWrapper>
-                  );
-               })}
-            </FooterLinksContainer>
-            <SocialMedia>
-               <SocialMediaWrap>
-                  <Logo />
-                  <SocialIcons>
-                     {SOCIAL_LINKS_DATA.map(({ id, href, icon, ariaLabel }) => {
-                        return (
-                           <SocialIconLink
-                              key={id}
-                              href={href}
-                              target="_blank"
-                              aria-label={ariaLabel}
-                              rel="external"
-                           >
-                              {icon}
-                           </SocialIconLink>
-                        );
-                     })}
-                  </SocialIcons>
-               </SocialMediaWrap>
-            </SocialMedia>
-         </FooterWrap>
-      </FooterContainer>
+                           }
+                        )}
+                     </SocialIcons>
+                  </SocialMediaWrap>
+               </SocialMedia>
+            </FooterWrap>
+         </FooterContainer>
+      </LazyLoad>
    );
 };
 
