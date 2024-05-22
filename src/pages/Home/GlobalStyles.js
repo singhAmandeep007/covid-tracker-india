@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import breakPoints from './Breakpoints';
+import { createGlobalStyle } from "styled-components";
+import breakPoints from "./Breakpoints";
 export const GlobalStyle = createGlobalStyle`
  
    *::before,
