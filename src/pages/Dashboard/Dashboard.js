@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Grid, Segment, Divider, Button, Label } from "semantic-ui-react";
 import { FaPalette } from "react-icons/fa";
 import LazyLoad from "./../../hooks/LazyLoad";
-import { COVID_SAMPLE_DATA } from "./../../services/COVID_DATA_SAMPLE";
 import { getCovidData } from "./../../services/covidData.api";
 
 import LineChart from "./../../components/Charts/LineChart";
@@ -34,13 +33,9 @@ function Dashboard() {
 
   async function getInfo() {
     try {
-      let response = await getCovidData();
-      //const response = COVID_SAMPLE_DATA;
-      if (!response.ok) {
-        throw new Error(`Error!: Status Code: ${response.status} `);
-      }
-      const { cases_time_series, statewise, tested } = await response.json();
+      let result = await getCovidData();
 
+      const { cases_time_series, statewise, tested } = result;
       setStatewiseInfo(statewise);
 
       setSelectedStateInfo(statewise[0]);
@@ -51,19 +46,7 @@ function Dashboard() {
 
       setLoading(false);
     } catch (e) {
-      console.error("There has been a problem with your fetch operation:");
-      // NOTE: if fetch error still show some data
-      setStatewiseInfo(COVID_SAMPLE_DATA.statewise);
-
-      setSelectedStateInfo(COVID_SAMPLE_DATA.statewise[0]);
-
-      setCasesInfo(COVID_SAMPLE_DATA.cases_time_series);
-
-      setTestSeriesInfo(COVID_SAMPLE_DATA.tested);
-
-      setLoading(false);
-
-      // setLoading(true);
+      console.error("There has been a problem with your fetch operation:", e);
     }
   }
 

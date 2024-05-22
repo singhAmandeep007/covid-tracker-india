@@ -102,6 +102,7 @@ const wordFadeIn = keyframes`
     opacity: 100%;
     content: 'originated from China.';
   }`;
+
 export const OverviewTitle = styled.div`
   color: var(--color-primary);
   text-align: center;
@@ -159,63 +160,59 @@ export const OverviewContent = styled.div`
 
 const swingIn = (order, selectedCardNum) => {
   return keyframes`
-   from {
-      transform: ${
-        order === 1
-          ? "translateX(50%) scale(1.2)"
-          : order === 2
-            ? "translateX(25%) scale(1.1)"
-            : order === 3 && selectedCardNum < 3
-              ? "translateX(-50%) scale(0.6)"
-              : order === 3 && selectedCardNum > 3
-                ? "translateX(50%) scale(0.6)"
-                : order === 4
-                  ? "translateX(-25%) scale(1.1)"
-                  : order === 5
-                    ? "translateX(-50%) scale(1.2)"
-                    : "scale(0.2)"
-      };
-      z-index:${
-        order === 1 ? 4 : order === 3 && selectedCardNum === "initial" ? 5 : order === 3 ? 1 : order === 5 ? 4 : 2
-      };
-   }
-   50%{
-      transform: ${
-        order === 1
-          ? "translateX(-75%) scale(1)"
-          : order === 2
-            ? "translateX(-25%) scale(0.9)"
-            : order === 3 && selectedCardNum < 3
-              ? "translateX(50%) scale(0.8)"
-              : order === 3 && selectedCardNum > 3
-                ? "translateX(-50%) scale(0.8)"
-                : order === 4
-                  ? "translateX(25%) scale(0.9)"
-                  : order === 5
-                    ? "translateX(75%) scale(1)"
-                    : "scale(0.6)"
-      };
-      z-index:${
-        order === 1 ? 1 : order === 3 && selectedCardNum === "initial" ? 4 : order === 3 ? 3 : order === 5 ? 1 : 2
-      };
-   }
-   to {
-      transform: ${
-        order === 1
-          ? "translateX(0%) scale(0.8)"
-          : order === 2
-            ? "translateX(0%) scale(0.9)"
-            : order === 3 && selectedCardNum < 3
+	from {
+		transform: ${
+      order === 1
+        ? "translateX(50%) scale(1.2)"
+        : order === 2
+          ? "translateX(25%) scale(1.1)"
+          : order === 3 && selectedCardNum < 3
+            ? "translateX(-50%) scale(0.6)"
+            : order === 3 && selectedCardNum > 3
+              ? "translateX(50%) scale(0.6)"
+              : order === 4
+                ? "translateX(-25%) scale(1.1)"
+                : order === 5
+                  ? "translateX(-50%) scale(1.2)"
+                  : "scale(0.2)"
+    };
+		z-index:${order === 1 ? 4 : order === 3 && selectedCardNum === "initial" ? 5 : order === 3 ? 1 : order === 5 ? 4 : 2};
+	}
+	50%{
+		transform: ${
+      order === 1
+        ? "translateX(-75%) scale(1)"
+        : order === 2
+          ? "translateX(-25%) scale(0.9)"
+          : order === 3 && selectedCardNum < 3
+            ? "translateX(50%) scale(0.8)"
+            : order === 3 && selectedCardNum > 3
+              ? "translateX(-50%) scale(0.8)"
+              : order === 4
+                ? "translateX(25%) scale(0.9)"
+                : order === 5
+                  ? "translateX(75%) scale(1)"
+                  : "scale(0.6)"
+    };
+		z-index:${order === 1 ? 1 : order === 3 && selectedCardNum === "initial" ? 4 : order === 3 ? 3 : order === 5 ? 1 : 2};
+	}
+	to {
+		transform: ${
+      order === 1
+        ? "translateX(0%) scale(0.8)"
+        : order === 2
+          ? "translateX(0%) scale(0.9)"
+          : order === 3 && selectedCardNum < 3
+            ? "translateX(0%) scale(1.1)"
+            : order === 3 && selectedCardNum > 3
               ? "translateX(0%) scale(1.1)"
-              : order === 3 && selectedCardNum > 3
-                ? "translateX(0%) scale(1.1)"
-                : order === 4
-                  ? "translateX(0%) scale(0.9)"
-                  : order === 5
-                    ? "translateX(0%) scale(0.8)"
-                    : "scale(0.8)"
-      };
-   }`;
+              : order === 4
+                ? "translateX(0%) scale(0.9)"
+                : order === 5
+                  ? "translateX(0%) scale(0.8)"
+                  : "scale(0.8)"
+    };
+	}`;
 };
 
 const getGridStyleProperties = css`
@@ -252,8 +249,7 @@ const backgroundFilter = css`
   @supports (backdrop-filter: blur(10px)) {
     backdrop-filter: blur(10px);
   }
-
-  @supports not (not backdrop-filter: blur(10px)) {
+  @supports not (backdrop-filter: blur(10px)) {
     background: rgba(255, 255, 255, 0.9);
 
     &::before {
