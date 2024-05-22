@@ -815,69 +815,67 @@
   color: var(--color-secondary);
   font-size: 2.4rem;
 `;var rt=[{id:Object(g.a)(),FooterTitle:"India Govt.",links:[{id:Object(g.a)(),href:"https://www.mygov.in/covid-19",ariaLabel:"MyGov",text:"MyGov Covid19"},{id:Object(g.a)(),href:"https://www.mohfw.gov.in/",ariaLabel:"mohfw",text:"MoHFW"},{id:Object(g.a)(),href:"https://delhi.gov.in/",ariaLabel:"DelhiGovt.",text:"Delhi Govt."},{id:Object(g.a)(),href:"https://www.icmr.gov.in/",ariaLabel:"icmr",text:"ICMR"},{id:Object(g.a)(),href:"https://covid19.india.gov.in/",ariaLabel:"helpline",text:"Helpline"}]},{id:Object(g.a)(),FooterTitle:"WHO",links:[{id:Object(g.a)(),href:"https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters",ariaLabel:"Mythbusters",text:"Mythbusters"},{id:Object(g.a)(),href:"https://www.who.int/emergencies/diseases/novel-coronavirus-2019/technical-guidance",ariaLabel:"Technical Guidance.",text:"Technical Guidance"},{id:Object(g.a)(),href:"https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public",ariaLabel:"Advice for the public",text:"Advice for the public"},{id:Object(g.a)(),href:"https://www.who.int/emergencies/diseases/novel-coronavirus-2019/global-research-on-novel-coronavirus-2019-ncov",ariaLabel:"Research",text:"Research"},{id:Object(g.a)(),href:"https://www.who.int/en/activities/tracking-SARS-CoV-2-variants/",ariaLabel:"SARS-CoV-2 variants",text:"SARS-CoV-2 variants"}]},{id:Object(g.a)(),FooterTitle:"CDC",links:[{id:Object(g.a)(),href:"https://www.cdc.gov/coronavirus/2019-ncov/",ariaLabel:"ncov",text:"What's Covid"},{id:Object(g.a)(),href:"https://www.cdc.gov/coronavirus/2019-nCoV/hcp/index.html",ariaLabel:"Healthcare Workers",text:"Healthcare Workers"},{id:Object(g.a)(),href:"https://www.cdc.gov/coronavirus/2019-ncov/vaccines/index.html",ariaLabel:"vaccine.",text:"Vaccine"},{id:Object(g.a)(),href:"https://www.cdc.gov/coronavirus/2019-ncov/science/science-agenda-covid19.html",ariaLabel:"Science Agenda",text:"Science Agenda"},{id:Object(g.a)(),href:"https://www.cdc.gov/coronavirus/2019-ncov/travelers/index.html",ariaLabel:"Travel",text:"Travel"}]}];const it=[{id:Object(g.a)(),href:"https://www.google.com/search?q=COVID",ariaLabel:"Google",icon:i.a.createElement(Be.a,null)},{id:Object(g.a)(),href:"https://www.facebook.com/coronavirus_info/",ariaLabel:"Facebook",icon:i.a.createElement(A.b,{color:"#3b5998"})},{id:Object(g.a)(),href:"https://www.youtube.com/watch?v=oqFn6AHoJZQ",ariaLabel:"Youtube",icon:i.a.createElement(A.h,{color:"#ff0000"})},{id:Object(g.a)(),href:"https://twitter.com/search?q=%23covid19",ariaLabel:"Twitter",icon:i.a.createElement(A.g,{color:"#55acee"})},{id:Object(g.a)(),href:"https://www.linkedin.com/business/talent/blog/covid-19",ariaLabel:"LinkedIn",icon:i.a.createElement(A.d,{color:"#007bb5"})},{id:Object(g.a)(),href:"https://www.instagram.com/who/?hl=en",ariaLabel:"Instagram",icon:i.a.createElement(A.c,{color:"#e95950"})}];var nt=()=>i.a.createElement(_.a,{id:"footer"},i.a.createElement(He,null,i.a.createElement(Je,null,i.a.createElement(Pe,null,rt.map((e=>{let{id:t,FooterTitle:a,links:r}=e;return i.a.createElement(Ye,{key:t},i.a.createElement(_e,null,i.a.createElement(Qe,null,a),r.map((e=>{let{id:t,href:a,ariaLabel:r,text:n}=e;return i.a.createElement(Ue,{key:t,href:a,target:"_blank","aria-label":r,rel:"external"},n)}))))}))),i.a.createElement(Ze,null,i.a.createElement(et,null,i.a.createElement(xe,null),i.a.createElement("div",{role:"list"},i.a.createElement("span",{role:"listitem",style:{color:"#fff"}},"Developed by Amandeep")),i.a.createElement(tt,null,it.map((e=>{let{id:t,href:a,icon:r,ariaLabel:n}=e;return i.a.createElement(at,{key:t,href:a,target:"_blank","aria-label":n,rel:"external"},r)}))))))));var ot={bp4k:"112.5em",bpLargest:"75em",bpLarge:"62.5em",bpMedium:"50em",bpSmall:"37.5em",bpSmallest:"31.25em"};const lt=m.b`
- 
-   *::before,
-   *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: inherit;
-   }
-   
-   :root {
-      --color-primary: #eb2f64;
-      --color-primary-light: #ff3366;
-      --color-primary-dark: #ba265d;
+	*::before,
+	*::after {
+		margin: 0;
+		padding: 0;
+		box-sizing: inherit;
+	}
+	:root {
+		--color-primary: #eb2f64;
+		--color-primary-light: #ff3366;
+		--color-primary-dark: #ba265d;
 
-      --color-secondary: #faf9f9;
-      --color-secondary-light: #fff;
+		--color-secondary: #faf9f9;
+		--color-secondary-light: #fff;
 
-      --color-dark: #000000;
-      --color-dark-light: #000313;
+		--color-dark: #000000;
+		--color-dark-light: #000313;
 
-      // FONT VARIABLES
-      --font-primary: 'Nunito', sans-serif;
-      --font-display: 'Josefin Sans', sans-serif;
-   }
+		// FONT VARIABLES
+		--font-primary: 'Nunito', sans-serif;
+		--font-display: 'Josefin Sans', sans-serif;
+	}
 
   html,body{
-      margin: 0;
-      padding: 0;
+		margin: 0;
+		padding: 0;
   }
   html {
-      box-sizing: border-box;
-      @media only screen and (min-width: ${ot.bp4k}) {
-         font-size: 87.5% !important; // 14px
-      }
-      // 1200px - 1800px font size : 10px
-      @media only screen and (max-width: ${ot.bp4k}) {
-         font-size: 68.5% !important; // 11px
-      }
-      // 800px - 1200px font size : 10px
-      @media only screen and (max-width: ${ot.bpLargest}) {
-         font-size: 62.5% !important; // 10px
-      }
+		box-sizing: border-box;
+		@media only screen and (min-width: ${ot.bp4k}) {
+				font-size: 87.5% !important; // 14px
+		}
+		// 1200px - 1800px font size : 10px
+		@media only screen and (max-width: ${ot.bp4k}) {
+				font-size: 68.5% !important; // 11px
+		}
+		// 800px - 1200px font size : 10px
+		@media only screen and (max-width: ${ot.bpLargest}) {
+				font-size: 62.5% !important; // 10px
+		}
 
-      @media only screen and (max-width: ${ot.bpMedium}) {
-         font-size: 56.5% !important; // 9px
-      }
-      @media only screen and (max-width: ${ot.bpSmall}) {
-         font-size: 50% !important; // 8px
-      }
-      @media only screen and (max-width: 390px) {
-         font-size: 43.75% !important; // 8px
-      }
-   }
-   body{
-      font-family: var(--font-primary);
-      font-weight: 400;
-      line-height: 1.6;
+		@media only screen and (max-width: ${ot.bpMedium}) {
+				font-size: 56.5% !important; // 9px
+		}
+		@media only screen and (max-width: ${ot.bpSmall}) {
+				font-size: 50% !important; // 8px
+		}
+		@media only screen and (max-width: 390px) {
+				font-size: 43.75% !important; // 8px
+		}
+  }
+  body{
+		font-family: var(--font-primary);
+		font-weight: 400;
+		line-height: 1.6;
 
-   }
+  }
 
    // NOTE: we can change the style of selected text. using the selection pseudo class
-   ::selection {
-      background-color: var(--color-primary);
-      color: var(--color-secondary);
-   }
-`,ct={...ot};var st=function(){const[e,t]=Object(r.useState)(!1),a=()=>{t(!e)};return i.a.createElement(i.a.Fragment,null,i.a.createElement(lt,null),i.a.createElement(m.a,{theme:ct},i.a.createElement("main",{style:{background:"var(--color-dark)"}},i.a.createElement(Ie,{isOpen:e,toggle:a}),i.a.createElement(Ee,{toggle:a}),i.a.createElement(N,null),i.a.createElement(K,null),i.a.createElement(de,b),i.a.createElement(de,y),i.a.createElement(de,w),i.a.createElement(de,x),i.a.createElement(Ge,null),i.a.createElement(nt,null))))};const dt=i.a.lazy((()=>Promise.all([a.e(3),a.e(8)]).then(a.bind(null,368))));var mt=()=>i.a.createElement(d.c,null,i.a.createElement(d.a,{exact:!0,path:"/"},i.a.createElement(s,{title:"Home"}),i.a.createElement(st,null)),i.a.createElement(d.a,{exact:!0,path:"/dashboard"},i.a.createElement(s,{title:"Dashboard"}),i.a.createElement(dt,null))),ht=a(50);a(131);const pt=new URL("https://singhamandeep.me/covid-tracker-india/").pathname;var ut=()=>i.a.createElement(l.b,null,i.a.createElement(l.a,null,i.a.createElement("script",{type:"application/json"},JSON.stringify({"@context":"http://schema.org/","@type":"NewsMediaOrganization",name:"Covid-19 Information, Useful Links and Live Dashboard",alternateName:"COVID-19 Tracker",url:"https://covidindia2020.web.app/",description:"Provides covid related information and real-time live tracking of Coronavirus cases in India.",identifier:"https://covidindia2020.web.app/"}))),i.a.createElement(c.a,{basename:pt},i.a.createElement(r.Suspense,{fallback:i.a.createElement(ht.a,null)},i.a.createElement(mt,null))));Boolean("localhost"===window.location.hostname||"[::1]"===window.location.hostname||window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));o.a.render(i.a.createElement(i.a.StrictMode,null,i.a.createElement(ut,null)),document.getElementById("root")),"serviceWorker"in navigator&&navigator.serviceWorker.ready.then((e=>{e.unregister()})).catch((e=>{console.error(e.message)}))},25:function(e,t,a){"use strict";a.d(t,"a",(function(){return l}));var r=a(1),i=a.n(r),n=a(99),o=a(50);function l(e){var t,a,r,l,c;const{tag:s="div",id:d,children:m,style:h,className:p}=e,u=s,f={root:null!==(t=e.root)&&void 0!==t?t:null,threshold:null!==(a=e.threshold)&&void 0!==a?a:0,rootMargin:null!==(r=e.rootMargin)&&void 0!==r?r:"10%",triggerOnce:null===(l=e.triggerOnce)||void 0===l||l,initialInView:null!==(c=e.initialInView)&&void 0!==c&&c},{ref:g,inView:v}=Object(n.a)({...f});return i.a.createElement(u,{id:d,ref:g,style:h,className:p,children:v?m:i.a.createElement(o.a,null)})}},50:function(e,t,a){"use strict";var r=a(1),i=a.n(r),n=a(101);t.a=e=>{let{num:t=1,type:a="square"}=e,r=Array.from(Array(t),((e,t)=>i.a.createElement("div",{key:t},i.a.createElement(n.a.Image,{square:"square"===a,rectangular:"rectangular"===a}))));return i.a.createElement(n.a,{fluid:!0},r)}}},[[132,1,4]]]);
-//# sourceMappingURL=main.a4a26520.chunk.js.map
+	::selection {
+		background-color: var(--color-primary);
+		color: var(--color-secondary);
+	}
+`,ct={...ot};var st=function(){const[e,t]=Object(r.useState)(!1),a=()=>{t(!e)};return i.a.createElement(i.a.Fragment,null,i.a.createElement(lt,null),i.a.createElement(m.a,{theme:ct},i.a.createElement("main",{style:{background:"var(--color-dark)"}},i.a.createElement(Ie,{isOpen:e,toggle:a}),i.a.createElement(Ee,{toggle:a}),i.a.createElement(N,null),i.a.createElement(K,null),i.a.createElement(de,b),i.a.createElement(de,y),i.a.createElement(de,w),i.a.createElement(de,x),i.a.createElement(Ge,null),i.a.createElement(nt,null))))};const dt=i.a.lazy((()=>Promise.all([a.e(3),a.e(8)]).then(a.bind(null,368))));var mt=()=>i.a.createElement(d.c,null,i.a.createElement(d.a,{exact:!0,path:"/"},i.a.createElement(s,{title:"Home"}),i.a.createElement(st,null)),i.a.createElement(d.a,{exact:!0,path:"/dashboard"},i.a.createElement(s,{title:"Dashboard"}),i.a.createElement(dt,null))),ht=a(50);a(131);const pt=new URL("https://singhamandeep.me/covid-tracker-india/").pathname;var ut=()=>i.a.createElement(l.b,null,i.a.createElement(l.a,null,i.a.createElement("script",{type:"application/json"},JSON.stringify({"@context":"http://schema.org/","@type":"NewsMediaOrganization",name:"Covid-19 Information, Useful Links and Live Dashboard",alternateName:"COVID-19 Tracker",url:"https://singhamandeep007.github.io/covid-tracker-india",description:"Provides covid related information and real-time live tracking of Coronavirus cases in India.",identifier:"https://singhamandeep007.github.io/covid-tracker-india"}))),i.a.createElement(c.a,{basename:pt},i.a.createElement(r.Suspense,{fallback:i.a.createElement(ht.a,null)},i.a.createElement(mt,null))));Boolean("localhost"===window.location.hostname||"[::1]"===window.location.hostname||window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));o.a.render(i.a.createElement(i.a.StrictMode,null,i.a.createElement(ut,null)),document.getElementById("root")),"serviceWorker"in navigator&&navigator.serviceWorker.ready.then((e=>{e.unregister()})).catch((e=>{console.error(e.message)}))},25:function(e,t,a){"use strict";a.d(t,"a",(function(){return l}));var r=a(1),i=a.n(r),n=a(99),o=a(50);function l(e){var t,a,r,l,c;const{tag:s="div",id:d,children:m,style:h,className:p}=e,u=s,f={root:null!==(t=e.root)&&void 0!==t?t:null,threshold:null!==(a=e.threshold)&&void 0!==a?a:0,rootMargin:null!==(r=e.rootMargin)&&void 0!==r?r:"10%",triggerOnce:null===(l=e.triggerOnce)||void 0===l||l,initialInView:null!==(c=e.initialInView)&&void 0!==c&&c},{ref:g,inView:v}=Object(n.a)({...f});return i.a.createElement(u,{id:d,ref:g,style:h,className:p,children:v?m:i.a.createElement(o.a,null)})}},50:function(e,t,a){"use strict";var r=a(1),i=a.n(r),n=a(101);t.a=e=>{let{num:t=1,type:a="square"}=e,r=Array.from(Array(t),((e,t)=>i.a.createElement("div",{key:t},i.a.createElement(n.a.Image,{square:"square"===a,rectangular:"rectangular"===a}))));return i.a.createElement(n.a,{fluid:!0},r)}}},[[132,1,4]]]);
+//# sourceMappingURL=main.e50a5632.chunk.js.map
