@@ -6,9 +6,9 @@ const schemaMarkup = () => ({
   "@type": "NewsMediaOrganization",
   name: "Covid-19 Information, Useful Links and Live Dashboard",
   alternateName: "COVID-19 Tracker",
-  url: "https://covidindia2020.web.app/",
+  url: "https://singhamandeep007.github.io/covid-tracker-india",
   description: "Provides covid related information and real-time live tracking of Coronavirus cases in India.",
-  identifier: "https://covidindia2020.web.app/",
+  identifier: "https://singhamandeep007.github.io/covid-tracker-india",
 });
 
 const HelmetDefault = (props) => (

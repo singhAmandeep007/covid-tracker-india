@@ -1,6 +1,5 @@
 ## 📃 Welcome to the Covid-19 India Tracker wiki!
 
-
 ## ⚡ Technologies
 
 [![npm](https://aleen42.github.io/badges/src/npm.svg)](https://aleen42.github.io/badges/src/npm.svg)
@@ -10,29 +9,31 @@
 ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3)
 
+---
 
-***
 ## ✍ Project name: Covid-19-India Tracker
 
 <b>Description:</b> A responsive site that displays up to date COVID-19 statistics for India and its states.
 
-***
-## 📌 Features: 
+---
+
+## 📌 Features:
 
 ```diff
 + Live data: Shows the most recent data, and updates automatically.
-+ Tracking confirmed cases , recovered and deaths for each state using API https://api.covid19india.org/data.json 
++ Tracking confirmed cases , recovered and deaths for each state using API https://api.covid19india.org/data.json
 + Hovering on Table or state in Map instantly updates donut chart and info boxes representing the information of that state.
 + Choropleth Map of India represents Covid Impact in each state.
 + Linear Chart shows past 7 days confirmed, recovered and deaths aggregate using API https://api.covid19india.org/states_daily.json.
 + Statistics: Including the number of confirmed, recovered, and deaths, in addition to percents.
 + Responsive Application.
 ```
-***
-## 📱 Live Preview : (https://covidindia2020.firebaseapp.com/)
 
-***
+---
 
+## 📱 Live Preview : (https://singhamandeep007.github.io/covid-tracker-india/)
+
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
